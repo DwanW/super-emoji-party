@@ -36,18 +36,12 @@ class GameBoard extends React.Component {
   }
 }
 
-const TicTacToe = {
-  setup: () => ({ cells: Array(25).fill(null) }),
-
-  moves: {
-    clickCell: (G, ctx, id) => {
-      G.cells[id] = ctx.currentPlayer;
-    },
-  },
-};
+const emojiParty = {
+  setup: () => ( {spaces: Array(board1.length).fill(null)} )
+}
 
 const App = Client({
-  game: TicTacToe,
+  game: emojiParty,
   board: GameBoard,
 });
 
