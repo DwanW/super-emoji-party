@@ -6,9 +6,9 @@ import { Client} from 'boardgame.io/react';
 //this class sets up board and dom event listeners.
 class GameBoard extends React.Component {
   onClick() {
-    // console.log();
-    emojiParty.moves.rollDie();
+    this.props.moves.rollDie();
   }
+
   render() {
     const cellWidth = 100;
     const cellHeight = 100;
@@ -32,7 +32,8 @@ class GameBoard extends React.Component {
         <div style={{ position: 'relative' }}>
           {boardNode}
         </div>
-        <button onClick={this.onClick}>roll dice</button>
+        {/* arrow function grabs this */}
+        <button onClick={() => this.onClick()}>roll dice</button>
       </React.Fragment>
     );
   }
@@ -44,8 +45,7 @@ const emojiParty = {
   setup: () => ({ spaces: Array(10).fill(null), dieRoll: 1 }),
   moves: {
     rollDie: (G, ctx) => {
-      console.log(ctx);
-      // G.dieRoll = ctx.random.Die(6);
+      G.dieRoll = ctx.random.Die(6);
     },
   },
 }
