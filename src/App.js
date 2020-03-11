@@ -1,14 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Client } from 'boardgame.io/react';
 
-const board1 = [[0,0],[1,0],[1,1],[1,2],[2,2],[3,2],[4,2],[4,3],[4,4],[4,5]];
 
+//this class sets up board and dom event listeners.
 class GameBoard extends React.Component {
   render() {
 
     const cellStyle = {
+      boxSizing: 'border-box',
       border: '1px solid #555',
       width: '50px',
       height: '50px',
@@ -17,27 +17,22 @@ class GameBoard extends React.Component {
       position: "absolute",
     };
 
-    let board = [];
-    for (let i = 0; i < board1.length; i++) {
-      let id = i;
-        board.push(
-          // Generates board with Top Left at 0,0
-          <div style={{...cellStyle,top: `${50 * board1[i][1]}px`,left: `${50 * board1[i][0]}px`}} key={id} >
-            {/* {this.props.G.cells[id]} */}
-          </div>
-        );
-      }
-
+    const board = [[0,0],[1,0],[1,1],[1,2],[2,2],[3,2],[4,2],[4,3],[4,4],[4,5]];
+    // translate into an array of node
+    // Generates board with Top Left at 0,0
+    const boardNode = board.map((e, idx) => (<div style={{...cellStyle,top: `${50 * e[1]}px`,left: `${50 * e[0]}px`}} key={idx} ></div>))
     return (   
       <div style={{position:'relative'}}>
-      { board }
+      { boardNode }
       </div>
     );
   }
 }
 
+// initialize game state, define game interaction(moves), and define victory condition here.
 const emojiParty = {
-  setup: () => ( {spaces: Array(board1.length).fill(null)} )
+  //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
+  setup: () => ( {spaces: Array(10).fill(null)} )
 }
 
 const App = Client({
