@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Client} from 'boardgame.io/react';
+import { Client } from 'boardgame.io/react';
 
 
 //this class sets up board and dom event listeners.
@@ -36,8 +36,8 @@ class GameBoard extends React.Component {
         this.props.ctx.gameover.winner !== undefined ? (
           <div id="winner">Winner: {this.props.ctx.gameover.winner}</div>
         ) : (
-          <div id="winner"></div> 
-        );
+            <div id="winner"></div>
+          );
     }
 
     return (
@@ -56,21 +56,25 @@ class GameBoard extends React.Component {
 // initialize game state, define game interaction(moves), and define victory condition here.
 const emojiParty = {
   //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
-  setup: () => ({ 
+  setup: () => ({
     // change 10 later
     spaces: Array(10).fill(null),
     dieRoll: 1,
     p0Position: 0,
     p1Position: 0,
-   }),
+  }),
   moves: {
     rollDie: (G, ctx) => {
       G.spaces[G.p0Position] = null;
       G.spaces[G.p1Position] = null;
       G.dieRoll = ctx.random.Die(6);
-      ctx.currentPlayer === "0" ? G.p0Position += G.dieRoll:G.p1Position += G.dieRoll;
-      G.spaces[G.p0Position] = "p0";
-      G.spaces[G.p1Position] = "p1";
+      ctx.currentPlayer === "0" ? G.p0Position += G.dieRoll : G.p1Position += G.dieRoll;
+      if (G.p0Position !== G.p1Position) {
+        G.spaces[G.p0Position] = "p0";
+        G.spaces[G.p1Position] = "p1";
+      } else if (G.p0Position === G.p1Position) {
+        G.spaces[G.p0Position] = "p0p1";
+      }
     },
   },
   endIf: (G, ctx) => {
