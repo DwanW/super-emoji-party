@@ -1,6 +1,4 @@
 import React from 'react';
-import { Client } from 'boardgame.io/react';
-
 
 //this class sets up board and dom event listeners.
 class GameBoard extends React.Component {

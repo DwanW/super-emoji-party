@@ -15,14 +15,12 @@ export default function App() {
   const Game = Client(gameObj);
   return (
     <React.Fragment>
-      <div>
         {gameBegin ? <Game />: 
         <div>
           <button onClick={() =>setGameBegin(true)}>Start Game</button>
           <button onClick={() =>setPlayerNum(2)}>Two Player</button>
           <button onClick={() =>setPlayerNum(3)}>Three Player</button>
         </div>}
-      </div>
     </React.Fragment>
   )
 }
