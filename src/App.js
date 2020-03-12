@@ -1,7 +1,15 @@
 import React from 'react';
 import './App.css';
 import { Client } from 'boardgame.io/react';
+import Menu from './components/menu';
 
+// doesnt seem to work
+let playerGlobal = 2;
+
+const onPlayerNumChange = (num) => {
+  console.log(num)
+  playerGlobal = num;
+}
 
 //this class sets up board and dom event listeners.
 class GameBoard extends React.Component {
@@ -25,7 +33,7 @@ class GameBoard extends React.Component {
       position: "absolute",
     };
 
-    const board = [[0, 1], [1, 0], [1, 1], [1, 2], [2, 2], [3, 2], [4, 2], [4, 3], [4, 4], [4, 5]];
+    const board = [[0, 1], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]];
     // translate into an array of node
     // Generates board with Top Left at 0,0
     const boardNode = board.map((e, idx) => (<div style={{ ...cellStyle, top: `${cellHeight * e[1]}px`, left: `${cellWidth * e[0]}px` }} key={idx} >{this.props.G.spaces[idx]}</div>))
@@ -48,6 +56,7 @@ class GameBoard extends React.Component {
         {/* arrow function grabs this */}
         <button onClick={() => this.onClick()}>roll dice</button>
         <div>{winner}</div>
+        <Menu playerChange={onPlayerNumChange}/>
       </React.Fragment>
     );
   }
@@ -60,26 +69,26 @@ const emojiParty = {
     // change 10 later
     spaces: Array(10).fill(null),
     dieRoll: 1,
-    p0Position: 0,
-    p1Position: 0,
+    player1Obj: {position:0, equipment:null, ailment:null, buff: null, inventory:[]},
+    player2Obj: {position:0, equipment:null, ailment:null, buff: null, inventory:[]},
   }),
   moves: {
     rollDie: (G, ctx) => {
-      G.spaces[G.p0Position] = null;
-      G.spaces[G.p1Position] = null;
+      G.spaces[G.player1Obj.position] = null;
+      G.spaces[G.player2Obj.position] = null;
       G.dieRoll = ctx.random.Die(6);
-      ctx.currentPlayer === "0" ? G.p0Position += G.dieRoll : G.p1Position += G.dieRoll;
-      if (G.p0Position !== G.p1Position) {
-        G.spaces[G.p0Position] = "p0";
-        G.spaces[G.p1Position] = "p1";
-      } else if (G.p0Position === G.p1Position) {
-        G.spaces[G.p0Position] = "p0p1";
+      ctx.currentPlayer === "0" ? G.player1Obj.position += G.dieRoll : G.player2Obj.position += G.dieRoll;
+      if (G.player1Obj.position !== G.player2Obj.position) {
+        G.spaces[G.player1Obj.position] = "p1";
+        G.spaces[G.player2Obj.position] = "p2";
+      } else if (G.player1Obj.position === G.player2Obj.position) {
+        G.spaces[G.player1Obj.position] = "p1p2";
       }
     },
   },
   endIf: (G, ctx) => {
     // change 10 later
-    if (G.p0Position > 10 || G.p1Position > 10) {
+    if (G.player1Obj.position > 10 || G.player2Obj.position > 10) {
       return { winner: ctx.currentPlayer };
     }
   },
@@ -88,29 +97,7 @@ const emojiParty = {
 const App = Client({
   game: emojiParty,
   board: GameBoard,
+  numPlayers: playerGlobal,
 });
 
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
