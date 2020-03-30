@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import './front-page.styles.scss';
 import PlayerContext from '../../context/player-context';
 
+
+// FrontPage that sets up number of players for the game and Link to the Game Page;
 const FrontPage = () => {
     const { setPlayerNum } = useContext(PlayerContext);
 
@@ -13,11 +15,12 @@ const FrontPage = () => {
 
     return (
         <div>
-                <div>
-                    <Link to="/game">Start Game</Link>
-                    <button onClick={() => setPlayerNum(2)}>Two Player</button>
-                    <button onClick={() => setPlayerNum(3)}>Three Player</button>
-                </div>
+            <div className="start-menu">
+                <header>to do Game Header component</header>
+                <Link to="/game" className="menu-option">Start Game</Link>
+                <button onClick={() => setPlayerNum(2)} className="menu-option">Two Player</button>
+                <button onClick={() => setPlayerNum(3)} className="menu-option">Three Player</button>
+            </div>
         </div>
     )
 }

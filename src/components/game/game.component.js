@@ -1,4 +1,5 @@
 import React from 'react';
+import './game.styles.scss';
 
 //this class sets up board and dom event listeners.
 class GameBoard extends React.Component {
@@ -9,8 +10,8 @@ class GameBoard extends React.Component {
   }
 
   render() {
-    const cellWidth = 100;
-    const cellHeight = 100;
+    const cellWidth = 50;
+    const cellHeight = 50;
 
     const cellStyle = {
       boxSizing: 'border-box',
@@ -57,8 +58,8 @@ const emojiParty = {
     // change 10 later
     spaces: Array(10).fill(null),
     dieRoll: 1,
-    player1Obj: {position:0, equipment:null, ailment:null, buff: null, inventory:[]},
-    player2Obj: {position:0, equipment:null, ailment:null, buff: null, inventory:[]},
+    player1Obj: { position: 0, equipment: null, ailment: null, buff: null, inventory: [] },
+    player2Obj: { position: 0, equipment: null, ailment: null, buff: null, inventory: [] },
   }),
   moves: {
     rollDie: (G, ctx) => {
@@ -83,4 +84,4 @@ const emojiParty = {
 }
 
 
-export {GameBoard, emojiParty};
+export { GameBoard, emojiParty };

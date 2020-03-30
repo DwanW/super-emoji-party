@@ -6,13 +6,16 @@ import FrontPage from './page/front-page/front-page';
 import GamePage from './page/game-page/game-page';
 import PlayerContext from './context/player-context';
 
+import './App.scss';
+
+
+//Primary function is to have routes to different pages of the app, and pass context to child component
 const App = () => {
   const [playerNum, setPlayerNum] = useState(2);
   const value = { playerNum, setPlayerNum };
 
   return (
     <div>
-      <header>to do component</header>
       <PlayerContext.Provider value={value}>
         <Switch>
           <Route exact path="/" component={FrontPage} />
