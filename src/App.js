@@ -1,26 +1,26 @@
 import React from 'react';
 import { useState } from 'react';
-import { GameBoard, emojiParty} from './components/MainGame';
-import { Client } from 'boardgame.io/react';
 
-export default function App() {
+import { Switch, Route } from 'react-router-dom';
+import FrontPage from './page/front-page/front-page';
+import GamePage from './page/game-page/game-page';
+import PlayerContext from './context/player-context';
+
+const App = () => {
   const [playerNum, setPlayerNum] = useState(2);
-  const [gameBegin, setGameBegin] = useState(false);
-  
-  const gameObj = {
-    game: emojiParty,
-    board: GameBoard,
-    numPlayers: playerNum,
-  };
-  const Game = Client(gameObj);
+  const value = { playerNum, setPlayerNum };
+
   return (
-    <React.Fragment>
-        {gameBegin ? <Game />: 
-        <div>
-          <button onClick={() =>setGameBegin(true)}>Start Game</button>
-          <button onClick={() =>setPlayerNum(2)}>Two Player</button>
-          <button onClick={() =>setPlayerNum(3)}>Three Player</button>
-        </div>}
-    </React.Fragment>
+    <div>
+      <header>to do component</header>
+      <PlayerContext.Provider value={value}>
+        <Switch>
+          <Route exact path="/" component={FrontPage} />
+          <Route exact path="/game" component={GamePage} />
+        </Switch>
+      </PlayerContext.Provider>
+    </div>
   )
 }
+
+export default App;
