@@ -66,9 +66,9 @@ const emojiParty = {
   //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
   setup: () => ({
     // change 10 later
-    spaces: ["MatthewDwan", ...Array(9).fill(null)],
+    spaces: ["MattDwan", ...Array(9).fill(null)],
     dieRoll: 1,
-    players: [{ playerName: 'Dwan', position: 0 }, { playerName: 'Matthew', position: 0 }]
+    players: [{ playerName: 'Dwan', position: 0 }, { playerName: 'Matt', position: 0 }]
   }),
   // phase: {
   //   rollDie:{
@@ -96,7 +96,7 @@ const emojiParty = {
     // change 10 later
     let currentPlayer = G.players[Number(ctx.currentPlayer)];
     if (currentPlayer.position > 9) {
-      return { winner: ctx.currentPlayer };
+      return { winner: currentPlayer.playerName };
     }
   },
 }

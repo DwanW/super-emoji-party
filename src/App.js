@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import FrontPage from './page/front-page/front-page';
 import GamePage from './page/game-page/game-page';
+import SettingPage from './page/setting-page/setting-page';
+
 import PlayerContext from './context/player-context';
 
 import './App.scss';
@@ -20,6 +22,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={FrontPage} />
           <Route exact path="/game" component={GamePage} />
+          <Route exact path="/setting" component={SettingPage} />
         </Switch>
       </PlayerContext.Provider>
     </div>

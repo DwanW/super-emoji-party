@@ -1,0 +1,15 @@
+.setting-page{
+    display: flex;
+    height: 100vh;
+    width: 80vw;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+}
+.setting-nav {
+    width: 30vw;
+    cursor: pointer;
+}
+.setting-display {
+    width: 50vw;
+}

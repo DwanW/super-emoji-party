@@ -20,6 +20,7 @@ const FrontPage = () => {
                 <Link to="/game" className="menu-option">Start Game</Link>
                 <button onClick={() => setPlayerNum(2)} className="menu-option">Two Player</button>
                 <button onClick={() => setPlayerNum(3)} className="menu-option">Three Player</button>
+                <Link to="/setting" className="menu-option">Settings</Link>
             </div>
         </div>
     )
