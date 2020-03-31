@@ -8,13 +8,24 @@ class GameBoard extends React.Component {
   async onClick() {
     // this.props.moves.traverse()
     if (!this.props.ctx.gameover) {
+      //roll dice
       await this.props.moves.rollDie();
-      // let currentPlayer = this.props.G.players[Number(this.props.ctx.currentPlayer)];
+      let currentPlayer = this.props.G.players[Number(this.props.ctx.currentPlayer)];
       let rollValue = this.props.G.dieRoll;
-      for (let i = 0; i < rollValue && !this.props.ctx.gameover; i++) {
-        setTimeout(() => this.props.moves.traverse(), i * 500);
+      let goalPosition = currentPlayer.position + rollValue;
+      //move player position and end turn after move is done;
+      if (goalPosition < this.props.G.spaces.length - 1) {
+        for (let i = 0; i < rollValue; i++) {
+          setTimeout(() => this.props.moves.traverse(), i * 500);
+          if (i === rollValue - 1) {
+            setTimeout(() => this.props.events.endTurn(), i * 500);
+          }
+        }
+      } else {
+        for (let i = 0; i < ((this.props.G.spaces.length - 1) - currentPlayer.position); i++) {
+          setTimeout(() => this.props.moves.traverse(), i * 500);
+        }
       }
-      this.props.events.endTurn();
     }
   }
 
