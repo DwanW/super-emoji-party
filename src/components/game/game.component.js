@@ -1,22 +1,24 @@
 import React from 'react';
 import './game.styles.scss';
 
-//this class sets up board and dom event listeners.
+const smallboard = [[0, 1], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]];
+//this class sets up the view layer
 class GameBoard extends React.Component {
 
   async onClick() {
     // this.props.moves.traverse()
-    await this.props.moves.rollDie();
-    // let currentPlayer = this.props.G.players[Number(this.props.ctx.currentPlayer)];
-    let rollValue = this.props.G.dieRoll;
-    for (let i = 0; i < rollValue; i++) {
-      setTimeout(() => this.props.moves.traverse(), i * 500);
+    if (!this.props.ctx.gameover) {
+      await this.props.moves.rollDie();
+      // let currentPlayer = this.props.G.players[Number(this.props.ctx.currentPlayer)];
+      let rollValue = this.props.G.dieRoll;
+      for (let i = 0; i < rollValue && !this.props.ctx.gameover; i++) {
+        setTimeout(() => this.props.moves.traverse(), i * 500);
+      }
+      this.props.events.endTurn();
     }
-    this.props.events.endTurn();
   }
 
   render() {
-    console.log(this.props );
     // generate cell;
     const cellWidth = 50;
     const cellHeight = 50;
@@ -32,7 +34,7 @@ class GameBoard extends React.Component {
     };
 
     // generate board;
-    const board = [[0, 1], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5]];
+    const board = smallboard;
     // translate into an array of node
     // Generates board with Top Left at 0,0
     const boardNode = board.map((e, idx) => (<div style={{ ...cellStyle, top: `${cellHeight * e[1]}px`, left: `${cellWidth * e[0]}px` }} key={idx} >{this.props.G.spaces[idx]}</div>))
@@ -95,7 +97,7 @@ const emojiParty = {
   endIf: (G, ctx) => {
     // change 10 later
     let currentPlayer = G.players[Number(ctx.currentPlayer)];
-    if (currentPlayer.position > 9) {
+    if (currentPlayer.position >= 9) {
       return { winner: currentPlayer.playerName };
     }
   },
