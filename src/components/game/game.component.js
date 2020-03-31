@@ -3,19 +3,20 @@ import './game.styles.scss';
 
 //this class sets up board and dom event listeners.
 class GameBoard extends React.Component {
+
   async onClick() {
     // this.props.moves.traverse()
     await this.props.moves.rollDie();
     // let currentPlayer = this.props.G.players[Number(this.props.ctx.currentPlayer)];
     let rollValue = this.props.G.dieRoll;
     for (let i = 0; i < rollValue; i++) {
-      setTimeout(() => this.props.moves.traverse(), i * 1000);
+      setTimeout(() => this.props.moves.traverse(), i * 500);
     }
     this.props.events.endTurn();
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props );
     // generate cell;
     const cellWidth = 50;
     const cellHeight = 50;
@@ -65,9 +66,9 @@ const emojiParty = {
   //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
   setup: () => ({
     // change 10 later
-    spaces: Array(10).fill(null),
+    spaces: ["MatthewDwan", ...Array(9).fill(null)],
     dieRoll: 1,
-    players: [{ position: 0 }, { position: 0 }]
+    players: [{ playerName: 'Dwan', position: 0 }, { playerName: 'Matthew', position: 0 }]
   }),
   // phase: {
   //   rollDie:{
@@ -77,19 +78,18 @@ const emojiParty = {
   moves: {
     rollDie: (G, ctx) => {
       G.dieRoll = ctx.random.Die(6);
-      // ctx.currentPlayer === "0" ? G.player1Obj.position += G.dieRoll : G.player2Obj.position += G.dieRoll;
-      // if (G.player1Obj.position !== G.player2Obj.position) {
-      //   G.spaces[G.player1Obj.position] = "p1";
-      //   G.spaces[G.player2Obj.position] = "p2";
-      // } else if (G.player1Obj.position === G.player2Obj.position) {
-      //   G.spaces[G.player1Obj.position] = "p1p2";
-      // }
     },
     traverse: (G, ctx) => {
       let currentPlayer = G.players[Number(ctx.currentPlayer)];
-      G.spaces[currentPlayer.position] = null;
+      G.spaces[currentPlayer.position] === currentPlayer.playerName ?
+        G.spaces[currentPlayer.position] = null
+        : G.spaces[currentPlayer.position] = G.spaces[currentPlayer.position].replace(currentPlayer.playerName, '');
+
       currentPlayer.position++;
-      G.spaces[currentPlayer.position] = "player";
+
+      G.spaces[currentPlayer.position] ?
+        G.spaces[currentPlayer.position] += currentPlayer.playerName
+        : G.spaces[currentPlayer.position] = currentPlayer.playerName;
     }
   },
   endIf: (G, ctx) => {
