@@ -19,8 +19,8 @@ const defineNextPossibleMoves = (top, left) => {
 const createMap = cellNum => {
     let board = [
         {
-            top: Math.round((Math.random() * cellNum) / 2),
-            left: Math.round((Math.random() * cellNum) / 2),
+            top: Math.round((Math.random() * cellNum) / 2.5 +5),
+            left: Math.round((Math.random() * cellNum) / 2.5 + 5),
             elevation: 0,
             effect: "none"
         }

@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import './setting-page.styles.scss';
 
+import BoardSetting from '../../components/board-setting/board-setting.component';
+
 // const settings = {
 //     // change 10 later
 //     spaces: ["MatthewDwan", ...Array(9).fill(null)],
@@ -24,7 +26,7 @@ const SettingPage = () => {
             </div>
             <div className='setting-display'>
                 {
-                    displaySetting === 0 ? <div>Board</div>
+                    displaySetting === 0 ? <BoardSetting />
                     : displaySetting === 1 ? <div>Turn Length</div>
                     : displaySetting === 2 ? <div>Audio </div> : ''
                 }

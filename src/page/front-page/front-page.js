@@ -10,9 +10,8 @@ import './front-page.styles.scss';
 
 // FrontPage that sets up number of players for the game and Link to the Game Page;
 const FrontPage = () => {
-    const globalState = useContext(store);
-    const { dispatch } = globalState;
-    console.log(globalState)
+    const { dispatch } = useContext(store);
+
 
     //Game object to setup the game;
 
