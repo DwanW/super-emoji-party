@@ -7,6 +7,7 @@ import createMap from './map-generation';
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapSize, ...otherProps }) => {
   const [board, setBoard] = useState([]);
+  const [moveTrigger, setMoveTrigger] = useState(1);
 
   useEffect(() => {
     // generate board;
@@ -37,13 +38,16 @@ const GameBoard = ({ ctx, G, moves, events, mapSize, ...otherProps }) => {
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }},[G.dieRoll])
+  }},[moveTrigger])
 
   const onClick = async () => {
     // moves.traverse()
     if (!ctx.gameover) {
       //roll dice
       await moves.rollDie();
+      let temp = moveTrigger +1;
+      console.log(temp);
+      setMoveTrigger(temp);
     }
   }
 
