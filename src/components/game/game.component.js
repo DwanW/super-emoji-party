@@ -5,14 +5,8 @@ import './game.styles.scss';
 import createMap from './map-generation';
 
 //this component sets up the view layer
-const GameBoard = ({ ctx, G, moves, events, mapSize, ...otherProps }) => {
-  const [board, setBoard] = useState([]);
+const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
   const [moveTrigger, setMoveTrigger] = useState(1);
-
-  useEffect(() => {
-    // generate board;
-    setBoard(createMap(mapSize));
-  }, [mapSize]);
 
   const firstRender = useRef(true);
 
@@ -62,7 +56,7 @@ const GameBoard = ({ ctx, G, moves, events, mapSize, ...otherProps }) => {
 
   // translate into an array of node
   // Generates board with Top Left at 0,0
-  const boardNode = board.map((e, idx) =>
+  const boardNode = mapLayout.map((e, idx) =>
     (<div
       className='cell'
       style={{
@@ -84,7 +78,7 @@ const GameBoard = ({ ctx, G, moves, events, mapSize, ...otherProps }) => {
     winner = ctx.gameover.winner !== undefined ? (<div id="winner">Winner: {ctx.gameover.winner}</div>)
       : (<div id="winner"></div>);
   }
-
+  console.log(mapLayout)
   return (
     <React.Fragment>
       <div className='cell-container'>

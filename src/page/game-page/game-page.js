@@ -62,7 +62,7 @@ const GamePage = () => {
   const Game = Client(gameObj);
   return (
     <div className="game-page">
-      <Game mapSize={state.mapSize} />
+      <Game mapLayout ={state.mapLayout} />
     </div>
   )
 }

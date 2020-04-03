@@ -80,7 +80,6 @@ const createMap = cellNum => {
                 return;
         }
     }
-    console.log(board);
     return board;
 };
 

@@ -1,9 +1,11 @@
 import React, {createContext, useReducer} from 'react';
+import createMap from '../components/game/map-generation';
 
 // Global State
 const initialState = {
     playerNum: 2,
-    mapSize: 20
+    mapSize: 20,
+    mapLayout: createMap(20)
 };
 
 // This create Global context
@@ -19,7 +21,7 @@ const StateProvider = ( { children } ) => {
       case 'SET_PLAYER_NUMBER':
         return {...state, playerNum: action.payload};
       case 'SET_MAP_SIZE':
-        return {...state, mapSize: action.payload};
+        return {...state, mapSize: action.payload, mapLayout: createMap(action.payload)};
       default:
         console.log('error');
     };
