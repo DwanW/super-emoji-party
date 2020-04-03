@@ -40,17 +40,16 @@ const GameBoard = ({ ctx, G, moves, events, mapSize, ...otherProps }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }},[moveTrigger])
 
-  const onClick = async () => {
+  const onClick = () => {
     // moves.traverse()
     if (!ctx.gameover) {
       //roll dice
-      await moves.rollDie();
+      moves.rollDie();
       let temp = moveTrigger +1;
       console.log(temp);
       setMoveTrigger(temp);
     }
   }
-
 
   // generate cell;
   const cellWidth = 50;

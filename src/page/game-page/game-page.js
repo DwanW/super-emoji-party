@@ -9,10 +9,10 @@ import './game-page.styles.scss';
 
 //Game Page that renders the game client using the MainGame component;
 const GamePage = () => {
-    const { state } = useContext(store);
+  const { state } = useContext(store);
 
-    // initialize game state, define game interaction(moves), and define victory condition here.
-    const emojiParty = {
+  // initialize game state, define game interaction(moves), and define victory condition here.
+  const emojiParty = {
     //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
     setup: () => ({
       // change 10 later
@@ -22,7 +22,7 @@ const GamePage = () => {
     }),
     // phase: {
     //   rollDie:{
-  
+
     //   }
     // },
     moves: {
@@ -34,9 +34,9 @@ const GamePage = () => {
         G.spaces[currentPlayer.position] === currentPlayer.playerName ?
           G.spaces[currentPlayer.position] = null
           : G.spaces[currentPlayer.position] = G.spaces[currentPlayer.position].replace(currentPlayer.playerName, '');
-  
+
         currentPlayer.position++;
-  
+
         G.spaces[currentPlayer.position] ?
           G.spaces[currentPlayer.position] += currentPlayer.playerName
           : G.spaces[currentPlayer.position] = currentPlayer.playerName;
@@ -46,25 +46,25 @@ const GamePage = () => {
       // change 10 later
       let currentPlayer = G.players[Number(ctx.currentPlayer)];
       if (currentPlayer.position >= state.mapSize - 1) {
-          console.log(currentPlayer.position);
+        console.log(currentPlayer.position);
         return { winner: currentPlayer.playerName };
       }
     },
   }
 
-    const gameObj = {
-        game: emojiParty,
-        board: GameBoard,
-        numPlayers: state.playerNum,
-    };
+  const gameObj = {
+    game: emojiParty,
+    board: GameBoard,
+    numPlayers: state.playerNum,
+    debug:false
+  };
 
-    const Game = Client(gameObj);
-
-    return (
-        <div className="game-page">
-            <Game mapSize={state.mapSize}/>
-        </div>
-    )
+  const Game = Client(gameObj);
+  return (
+    <div className="game-page">
+      <Game mapSize={state.mapSize} />
+    </div>
+  )
 }
 
 export default GamePage;
