@@ -5,7 +5,8 @@ import createMap from '../components/game/map-generation';
 const initialState = {
     playerNum: 2,
     mapSize: 20,
-    mapLayout: createMap(20)
+    mapLayout: createMap(20),
+    playerIcon: ['😎', '😁'],
 };
 
 // This create Global context

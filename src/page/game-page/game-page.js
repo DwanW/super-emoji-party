@@ -16,9 +16,9 @@ const GamePage = () => {
     //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
     setup: () => ({
       // change 10 later
-      spaces: ["MattDwan", ...Array(state.mapSize - 1).fill(null)],
+      spaces: [state.playerIcon[0]+state.playerIcon[1], ...Array(state.mapSize - 1).fill(null)],
       dieRoll: 6,
-      players: [{ playerName: 'Dwan', position: 0 }, { playerName: 'Matt', position: 0 }]
+      players: [{ playerName: state.playerIcon[0], position: 0 }, { playerName: state.playerIcon[1], position: 0 }]
     }),
     // phase: {
     //   rollDie:{

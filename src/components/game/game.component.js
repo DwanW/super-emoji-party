@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 
 import './game.styles.scss';
-import createMap from './map-generation';
 
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {

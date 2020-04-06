@@ -9,10 +9,13 @@
     .cell {
         box-sizing: border-box;
         border: 1px solid rgba(85, 85, 85, 0.336);
-        line-height: 50px;
         text-align: center;
         position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: rgba(143, 143, 143, 0.315);
+        font-size: 20px
     }
 
     :first-child{
