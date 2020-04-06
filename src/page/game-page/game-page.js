@@ -5,7 +5,10 @@ import { store } from '../../context/store';
 import GameBoard from '../../components/game/game.component';
 import { Client } from 'boardgame.io/react';
 
+
 import './game-page.styles.scss';
+
+
 
 //Game Page that renders the game client using the MainGame component;
 const GamePage = () => {
@@ -16,7 +19,7 @@ const GamePage = () => {
     //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
     setup: () => ({
       // change 10 later
-      spaces: [state.playerIcon[0]+state.playerIcon[1], ...Array(state.mapSize - 1).fill(null)],
+      spaces: [state.playerIcon[0] + state.playerIcon[1], ...Array(state.mapSize - 1).fill(null)],
       dieRoll: 6,
       players: [{ playerName: state.playerIcon[0], position: 0 }, { playerName: state.playerIcon[1], position: 0 }]
     }),
@@ -56,13 +59,13 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug:false
+    debug: false
   };
 
   const Game = Client(gameObj);
   return (
     <div className="game-page">
-      <Game mapLayout ={state.mapLayout} />
+      <Game mapLayout={state.mapLayout} />
     </div>
   )
 }

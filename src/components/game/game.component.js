@@ -39,7 +39,6 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
       //roll dice
       moves.rollDie();
       let temp = moveTrigger +1;
-      console.log(temp);
       setMoveTrigger(temp);
     }
   }
@@ -77,7 +76,6 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
     winner = ctx.gameover.winner !== undefined ? (<div id="winner">Winner: {ctx.gameover.winner}</div>)
       : (<div id="winner"></div>);
   }
-  console.log(mapLayout)
   return (
     <React.Fragment>
       <div className='cell-container'>

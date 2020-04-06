@@ -1,17 +1,44 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { store } from '../../context/store';
-import { setMapSize } from '../../context/action';
+import { setMapSize, setNextIcon, setPreviousIcon } from '../../context/action';
 
 import './board-setting.styles.scss';
 
 import CustomSlider from '../custom-slider/custom-slider.component';
 
 const BoardSetting = () => {
-    const { state, dispatch } = useContext(store)
+    const [currentIdx, setCurrentIdx] = useState(0);
+    const { state, dispatch } = useContext(store);
 
-    const onChange = (e) => {
+
+    const onMapSizeChange = (e) => {
         dispatch(setMapSize(Number(e.target.value)))
+    }
+
+    const nextIcon = () => {
+        dispatch(setNextIcon(currentIdx))
+    }
+
+    const previousIcon = () => {
+        dispatch(setPreviousIcon(currentIdx))
+    }
+
+    const nextPlayer = () => {
+        if (state.playerIcon[currentIdx + 1]) {
+            setCurrentIdx(currentIdx + 1);
+        } else {
+            setCurrentIdx(0);
+        }
+    }
+
+    const previousPlayer = () => {
+        if (state.playerIcon[currentIdx - 1]) {
+            setCurrentIdx(currentIdx - 1);
+        } else {
+            let lastIdx = state.playerIcon.length - 1;
+            setCurrentIdx(lastIdx)
+        }
     }
 
     return (
@@ -23,11 +50,21 @@ const BoardSetting = () => {
                     max='100'
                     min='10'
                     value={state.mapSize}
-                    onChange={onChange}
+                    onChange={onMapSizeChange}
                 />
             </div>
             <div className='option-container'>
-                123
+                <div className='label'>Player Icon</div>
+                <div className="player-name-tab">
+                    <button className='previous' onClick={previousPlayer}>&#10094;</button>
+                    <span>player {currentIdx}</span>
+                    <button className='next' onClick={nextPlayer}>&#10095;</button>
+                </div>
+                <div className="player-icon-tab">
+                    <button className='previous' onClick={previousIcon}>&#10094;</button>
+                    <span>{state.playerIcon[currentIdx]}</span>
+                    <button className='next' onClick={nextIcon}>&#10095;</button>
+                </div>
             </div>
         </div>
     )

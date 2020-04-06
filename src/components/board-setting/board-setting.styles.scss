@@ -1,4 +1,15 @@
 .option-container {
     padding: 20px;
     margin: 20px;
+    display: flex;
+}
+
+.player-name-tab {
+    display:flex;
+    width: 120px;
+    justify-content: space-between;
+}
+
+.player-icon-tab {
+    text-align: center;
 }

@@ -7,3 +7,13 @@ export const setMapSize = (value) => ({
     type: 'SET_MAP_SIZE',
     payload: value
 })
+
+export const setNextIcon = (value) => ({
+    type: 'SET_NEXT_ICON',
+    payload: value
+})
+
+export const setPreviousIcon = (value) => ({
+    type: 'SET_PREVIOUS_ICON',
+    payload: value
+})
