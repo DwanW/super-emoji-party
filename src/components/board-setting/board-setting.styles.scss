@@ -2,14 +2,23 @@
     padding: 20px;
     margin: 20px;
     display: flex;
-}
 
-.player-name-tab {
-    display:flex;
-    width: 120px;
-    justify-content: space-between;
-}
-
-.player-icon-tab {
-    text-align: center;
+    .player-name-tab {
+        display:flex;
+        width: 120px;
+        justify-content: space-between;
+    }
+    
+    .player-icon-tab {
+        min-width: 120px;
+        display: flex;
+        justify-content: space-between;
+    
+        .icon {
+            position: absolute;
+            width: fit-content;
+            font-size: calc(15px + 1vmin);
+            transform: translate(45px, 0%);
+        }
+    }
 }

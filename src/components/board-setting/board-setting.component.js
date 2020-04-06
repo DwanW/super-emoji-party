@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useContext } from 'react';
+import { useTransition, animated } from 'react-spring';
 import { store } from '../../context/store';
 import { setMapSize, setNextIcon, setPreviousIcon } from '../../context/action';
 
@@ -10,6 +11,13 @@ import CustomSlider from '../custom-slider/custom-slider.component';
 const BoardSetting = () => {
     const [currentIdx, setCurrentIdx] = useState(0);
     const { state, dispatch } = useContext(store);
+
+    //react-spring
+    const transitions = useTransition(state.playerIcon[currentIdx], null, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+    })
 
 
     const onMapSizeChange = (e) => {
@@ -62,7 +70,12 @@ const BoardSetting = () => {
                 </div>
                 <div className="player-icon-tab">
                     <button className='previous' onClick={previousIcon}>&#10094;</button>
-                    <span>{state.playerIcon[currentIdx]}</span>
+                    {
+                        transitions.map(({item, key, props}) => 
+                        <animated.span key={key} style={props} className='icon'>{item}</animated.span>
+                        )
+                    }
+                    {/* <span>{state.playerIcon[currentIdx]}</span> */}
                     <button className='next' onClick={nextIcon}>&#10095;</button>
                 </div>
             </div>
