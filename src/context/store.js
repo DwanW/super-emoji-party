@@ -7,7 +7,7 @@ const initialState = {
   playerNum: 2,
   mapSize: 20,
   mapLayout: createMap(20),
-  playerIcon: [emojiIcon[5], emojiIcon[1]],
+  playerIcon: [emojiIcon[0], emojiIcon[1]],
 };
 
 // This create Global context
@@ -21,9 +21,12 @@ const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'SET_PLAYER_NUMBER':
-        return { ...state, playerNum: action.payload };
+        let newArr = Array(action.payload).fill('').map((e,idx) => emojiIcon[idx])
+        return { ...state, playerNum: action.payload, playerIcon:newArr };
+
       case 'SET_MAP_SIZE':
         return { ...state, mapSize: action.payload, mapLayout: createMap(action.payload) };
+        
       case 'SET_NEXT_ICON':
         {
           let currentIcon = state.playerIcon[action.payload];
