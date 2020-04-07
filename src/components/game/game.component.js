@@ -5,17 +5,32 @@ import './game.styles.scss';
 
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
-  const [moveTrigger, setMoveTrigger] = useState(1);
+  const [moveTrigger, setMoveTrigger] = useState(0);
 
-  const firstRender = useRef(true);
+  const updatedRollValue = useRef();
 
-  useEffect(()=> {
-    if (firstRender.current){
-      firstRender.current = false;
-      return;
-    } else {
-    let currentPlayer = G.players[Number(ctx.currentPlayer)];
-    let rollValue = G.dieRoll;
+  //updating dieRoll value
+  useEffect(() => {
+    updatedRollValue.current = G.dieRoll;
+    console.log(updatedRollValue)
+  }, [G.dieRoll])
+
+  const onClick = async () => {
+    // moves.traverse()
+    if (!ctx.gameover) {
+      //roll dice
+      await moves.rollDie();
+      travel();
+      //update component
+      let temp = moveTrigger + 1;
+      setMoveTrigger(temp);
+    }
+  }
+
+  const travel = async () => {
+    let currentPlayer = await G.players[Number(ctx.currentPlayer)];
+    let rollValue = updatedRollValue.current;
+    console.log(rollValue)
     let goalPosition = currentPlayer.position + rollValue;
     //move player position and end turn after move is done;
     if (goalPosition < G.spaces.length - 1) {
@@ -29,17 +44,6 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
       for (let i = 0; i < ((G.spaces.length - 1) - currentPlayer.position); i++) {
         setTimeout(() => moves.traverse(), i * 500);
       }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }},[moveTrigger])
-
-  const onClick = () => {
-    // moves.traverse()
-    if (!ctx.gameover) {
-      //roll dice
-      moves.rollDie();
-      let temp = moveTrigger +1;
-      setMoveTrigger(temp);
     }
   }
 
