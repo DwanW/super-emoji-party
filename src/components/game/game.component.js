@@ -20,17 +20,19 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
     if (!ctx.gameover) {
       //roll dice
       await moves.rollDie();
-      travel();
       //update component
       let temp = moveTrigger + 1;
+      console.log('1')
       setMoveTrigger(temp);
+      console.log('2')
+      //move with updated dieRoll
+      travel();
     }
   }
 
-  const travel =  async () => {
-    let currentPlayer = await G.players[Number(ctx.currentPlayer)];
+  const travel = () => {
+    let currentPlayer = G.players[Number(ctx.currentPlayer)];
     let rollValue = updatedRollValue.current;
-    console.log(rollValue)
     let goalPosition = currentPlayer.position + rollValue;
     //move player position and end turn after move is done;
     if (goalPosition < G.spaces.length - 1) {
