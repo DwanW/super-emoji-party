@@ -27,7 +27,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
     }
   }
 
-  const travel = async () => {
+  const travel =  async () => {
     let currentPlayer = await G.players[Number(ctx.currentPlayer)];
     let rollValue = updatedRollValue.current;
     console.log(rollValue)
@@ -86,7 +86,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
         {boardNode}
       </div>
 
-      <button onClick={onClick}>roll dice</button>
+      <button className='roll-dice' onClick={onClick}>roll dice</button>
       <div>{winner}</div>
     </React.Fragment>
   );
