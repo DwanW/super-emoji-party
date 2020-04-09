@@ -1,0 +1,14 @@
+.banner-container{
+    position: absolute;
+    border: 1px solid black;
+    background: radial-gradient(ellipse at center, #00ffff2d, rgba(0, 255, 255, 0.705));
+    height: 100px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    margin: 30vh auto 0 auto;
+}

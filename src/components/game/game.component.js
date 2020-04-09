@@ -3,17 +3,26 @@ import { useEffect, useState, useRef } from 'react';
 
 import './game.styles.scss';
 
+import Banner from '../banner/banner.component';
+
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
   const [moveTrigger, setMoveTrigger] = useState(0);
+  const [showBanner, setShowBanner] = useState(false)
 
   const updatedRollValue = useRef();
 
   //updating dieRoll value
   useEffect(() => {
     updatedRollValue.current = G.dieRoll;
-    console.log(updatedRollValue)
   }, [G.dieRoll])
+
+  useEffect(() => {
+    setShowBanner(true);
+    let hide = setInterval(() => setShowBanner(false), 1400);
+    return () => clearInterval(hide);
+  }, [ctx.turn])
+
 
   const onClick = async () => {
     // moves.traverse()
@@ -22,9 +31,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
       await moves.rollDie();
       //update component
       let temp = moveTrigger + 1;
-      console.log('1')
       setMoveTrigger(temp);
-      console.log('2')
       //move with updated dieRoll
       travel();
     }
@@ -88,6 +95,11 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
         {boardNode}
       </div>
 
+      {showBanner ?
+        <Banner
+          turn={ctx.turn}
+          playerName={G.players[Number(ctx.currentPlayer)].playerName}
+        /> : null}
       <button className='roll-dice' onClick={onClick}>roll dice</button>
       <div>{winner}</div>
     </React.Fragment>
