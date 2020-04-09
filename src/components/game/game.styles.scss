@@ -27,5 +27,19 @@
 .roll-dice {
     display: block;
     position: fixed;
-    margin-top:20px;
+    margin:30% 0 0 10%;
+    border: none;
+    transform: rotate(20deg);
+    color: green;
+    transition: 0.5s;
+    background-color: transparent;
+    font-size:50px;
+
+    &:hover {
+      color: purple; 
+      transform: rotate(240deg); 
+    }
+    &:focus {
+        outline-style:none;
+    }
 }

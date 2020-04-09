@@ -1,5 +1,7 @@
 import React from 'react';
 import { useEffect, useState, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDiceFour } from '@fortawesome/free-solid-svg-icons';
 
 import './game.styles.scss';
 
@@ -100,7 +102,9 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
           turn={ctx.turn}
           playerName={G.players[Number(ctx.currentPlayer)].playerName}
         /> : null}
-      <button className='roll-dice' onClick={onClick}>roll dice</button>
+      <button className='roll-dice' onClick={onClick}>
+        <FontAwesomeIcon icon={faDiceFour} />
+      </button>
       <div>{winner}</div>
     </React.Fragment>
   );
