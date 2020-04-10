@@ -74,7 +74,8 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         ...cellStyle,
         top: `${cellHeight * e.top}px`,
         left: `${cellWidth * e.left}px`,
-        transform: `translateZ(${(e.elevation * 50)}px) rotateX(0deg)`,
+        transform: `translateZ(${(e.elevation * 50)}px)`,
+        opacity: `${(e.elevation === mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation)? 1: 0.25}`
       }}
       key={idx}
     >
@@ -88,7 +89,8 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         style={{
           top: `${cellHeight * mapLayout[e.position].top}px`,
           left: `${cellWidth * mapLayout[e.position].left}px`,
-          transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px) rotateX(0deg)`,
+          transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px)`,
+          opacity: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 1: 0.6}`
         }}
         key={`player${idx}`}
         >
