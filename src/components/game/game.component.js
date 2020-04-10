@@ -4,13 +4,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiceFour } from '@fortawesome/free-solid-svg-icons';
 
 import './game.styles.scss';
+import { useSpring, animated } from 'react-spring'
 
 import Banner from '../banner/banner.component';
 
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const [moveTrigger, setMoveTrigger] = useState(0);
-  const [showBanner, setShowBanner] = useState(false)
+  const [showBanner, setShowBanner] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+
+  const winnerSpring = useSpring({
+    from: { backgroundColor: 'green' },
+    to: async next => {
+      while (1) {
+        console.log('omg')
+        await next({ backgroundColor: '#00ffff' });
+        await next({ backgroundColor: 'orange' });
+      }
+    },
+  })
 
   const updatedRollValue = useRef();
 
@@ -28,15 +41,14 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
 
   const onClick = async () => {
-    // moves.traverse()
     if (!ctx.gameover) {
       //roll dice
       await moves.rollDie();
       //update component
       let temp = moveTrigger + 1;
       setMoveTrigger(temp);
-      //move with updated dieRoll
-      travel();
+      //display rolled number
+      setShowInfo(true);
     }
   }
 
@@ -54,6 +66,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         setTimeout(() => moves.traverse(), i * 500);
       }
     }
+    setShowInfo(false);
   }
 
   // generate cell;
@@ -75,7 +88,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         top: `${cellHeight * e.top}px`,
         left: `${cellWidth * e.left}px`,
         transform: `translateZ(${(e.elevation * 50)}px)`,
-        opacity: `${(e.elevation === mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation)? 1: 0.25}`
+        opacity: `${(e.elevation === mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation) ? 1 : 0.25}`
       }}
       key={idx}
     >
@@ -83,47 +96,43 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     )
   )
 
-  const playerNode = G.players.map((e,idx) =>
-      (<div
-        className='player'
-        style={{
-          top: `${cellHeight * mapLayout[e.position].top}px`,
-          left: `${cellWidth * mapLayout[e.position].left}px`,
-          transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px)`,
-          opacity: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 1: 0.6}`
-        }}
-        key={`player${idx}`}
-        >
-        {e.playerName}
-      </div>)
+  const playerNode = G.players.map((e, idx) =>
+    (<div
+      className='player'
+      style={{
+        top: `${cellHeight * mapLayout[e.position].top}px`,
+        left: `${cellWidth * mapLayout[e.position].left}px`,
+        transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px)`,
+        opacity: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 1 : 0.6}`
+      }}
+      key={`player${idx}`}
+    >
+      {e.playerName}
+    </div>)
   )
 
-  // f
-  let winner = null;
-  if (ctx.gameover) {
-    winner = ctx.gameover.winner !== undefined ? (<div id="winner">Winner: {ctx.gameover.winner}</div>)
-      : (<div id="winner"></div>);
-  }
   return (
     <React.Fragment>
       <div className='board'>
         <div className='cell-container'>{boardNode}</div>
         {playerNode}
       </div>
-      
 
       {showBanner ?
         <Banner
           turn={ctx.turn}
           playerName={G.players[Number(ctx.currentPlayer)].playerName}
         /> : null}
-      
-      <button className='roll-dice' onClick={onClick}>
-        <FontAwesomeIcon icon={faDiceFour} />
-      </button>
 
-      <button className='end-turn' onClick={()=> events.endTurn()}>End Turn</button>      
-      <div>{winner}</div>
+
+      {showInfo ? <div className='info' onAnimationEnd={() => travel()}>You rolled {updatedRollValue.current}</div> : null}
+      <div className='controls'>
+        <button className='roll-dice' onClick={onClick}>
+          <FontAwesomeIcon icon={faDiceFour} />
+        </button>
+        <button className='end-turn' onClick={() => events.endTurn()}>End Turn</button>
+      </div>
+      {(ctx.gameover && ctx.gameover.winner) ? (<animated.div style={winnerSpring} className="winner">Winner: {ctx.gameover.winner}</animated.div>) : null}
     </React.Fragment>
   );
 }

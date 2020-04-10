@@ -1,3 +1,10 @@
+%position-shared {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
 .board {
     perspective: 1000px;
     perspective-origin: center;  
@@ -31,22 +38,75 @@
     }
 }
 
-.roll-dice {
-    display: block;
-    position: fixed;
-    margin:30% 0 0 10%;
-    border: none;
-    transform: rotate(20deg);
-    color: green;
-    transition: 0.5s;
-    background-color: transparent;
-    font-size:50px;
+.controls{ 
+    @extend %position-shared;
+    top: 90vh;
+    width: 300px;
+    height: 70px; 
+    display:flex;
+    justify-content: center;  
+    align-items: center;
 
-    &:hover {
-      color: purple; 
-      transform: rotate(240deg); 
+    .roll-dice {
+        border: none;
+        transform: rotate(20deg);
+        color: green;
+        transition: 0.5s;
+        background-color: transparent;
+        font-size:40px;
+    
+        &:hover {
+          color: purple; 
+          transform: rotate(240deg); 
+        }
+        &:focus {
+            outline-style:none;
+        }
     }
-    &:focus {
-        outline-style:none;
+
+    .end-turn{
+        border: none;
+        background-color: yellow;
+        transition: 0.5s;
+        font-size:24px;
+    
+        &:hover {
+            background-color: blue;
+            color: white; 
+        }
+    }
+    
+}
+
+.info {
+    @extend %position-shared;
+    top: 88vh;
+    text-align: center;
+    width: 200px;
+    height: 30px;  
+    animation-name: fadeOut;
+    animation-duration: 1.3s;
+    animation-fill-mode: forwards;  
+}
+
+.winner{
+    @extend %position-shared;
+    top: 30vh;
+    margin: auto;
+    text-align: center;
+    padding: 50px;
+    width: 200px;
+    height: 130px;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }

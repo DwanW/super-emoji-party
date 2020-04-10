@@ -5,8 +5,8 @@ import { emojiIcon } from '../components/game/player-icon';
 // Global State
 const initialState = {
   playerNum: 2,
-  mapSize: 50,
-  mapLayout: createMap(50),
+  mapSize: 10,
+  mapLayout: createMap(10),
   playerIcon: [emojiIcon[0], emojiIcon[1]],
 };
 
