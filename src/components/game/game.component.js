@@ -8,7 +8,7 @@ import './game.styles.scss';
 import Banner from '../banner/banner.component';
 
 //this component sets up the view layer
-const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
+const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const [moveTrigger, setMoveTrigger] = useState(0);
   const [showBanner, setShowBanner] = useState(false)
 
@@ -19,6 +19,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
     updatedRollValue.current = G.dieRoll;
   }, [G.dieRoll])
 
+  //display turn banner at start of each turn
   useEffect(() => {
     setShowBanner(true);
     let hide = setInterval(() => setShowBanner(false), 1400);
@@ -44,15 +45,12 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
     let rollValue = updatedRollValue.current;
     let goalPosition = currentPlayer.position + rollValue;
     //move player position and end turn after move is done;
-    if (goalPosition < G.spaces.length - 1) {
+    if (goalPosition < mapSize - 1) {
       for (let i = 0; i < rollValue; i++) {
         setTimeout(() => moves.traverse(), i * 500);
-        if (i === rollValue - 1) {
-          setTimeout(() => events.endTurn(), i * 500);
-        }
       }
     } else {
-      for (let i = 0; i < ((G.spaces.length - 1) - currentPlayer.position); i++) {
+      for (let i = 0; i < ((mapSize - 1) - currentPlayer.position); i++) {
         setTimeout(() => moves.traverse(), i * 500);
       }
     }
@@ -80,9 +78,22 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
       }}
       key={idx}
     >
-      {G.spaces[idx]}
     </div>
     )
+  )
+
+  const playerNode = G.players.map((e,idx) =>
+      (<div
+        className='player'
+        style={{
+          top: `${cellHeight * mapLayout[e.position].top}px`,
+          left: `${cellWidth * mapLayout[e.position].left}px`,
+          transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px) rotateX(0deg)`,
+        }}
+        key={`player${idx}`}
+        >
+        {e.playerName}
+      </div>)
   )
 
   // f
@@ -93,18 +104,23 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, ...otherProps }) => {
   }
   return (
     <React.Fragment>
-      <div className='cell-container'>
-        {boardNode}
+      <div className='board'>
+        <div className='cell-container'>{boardNode}</div>
+        {playerNode}
       </div>
+      
 
       {showBanner ?
         <Banner
           turn={ctx.turn}
           playerName={G.players[Number(ctx.currentPlayer)].playerName}
         /> : null}
+      
       <button className='roll-dice' onClick={onClick}>
         <FontAwesomeIcon icon={faDiceFour} />
       </button>
+
+      <button className='end-turn' onClick={()=> events.endTurn()}>End Turn</button>      
       <div>{winner}</div>
     </React.Fragment>
   );

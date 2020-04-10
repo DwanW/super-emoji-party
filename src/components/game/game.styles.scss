@@ -1,26 +1,33 @@
-.cell-container {
+.board {
     perspective: 1000px;
     perspective-origin: center;  
     transform-style: preserve-3d;
     transform: rotateX(20deg)  rotateY(20deg);
-    
-    .cell {
-        box-sizing: border-box;
-        border: 1px solid rgba(85, 85, 85, 0.336);
-        text-align: center;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(143, 143, 143, 0.315);
-        font-size: 20px
-    }
 
-    :first-child{
-        background-color:rgba(255, 255, 0, 0.473)
+    .cell-container{
+        
+        .cell {
+            box-sizing: border-box;
+            border: 1px solid rgba(85, 85, 85, 0.336);
+            text-align: center;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(143, 143, 143, 0.315);
+            font-size: 20px
+        }
+
+        :first-child{
+            background-color:rgba(255, 255, 0, 0.473)
+        }
+        :last-child{
+            background-color:rgba(0, 128, 0, 0.377)
+        }
     }
-    :last-child{
-        background-color:rgba(0, 128, 0, 0.377)
+    .player {
+        position: absolute;
+        transition: 0.3s
     }
 }
 

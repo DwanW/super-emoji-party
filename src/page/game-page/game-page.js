@@ -16,14 +16,11 @@ const GamePage = () => {
 
   const playerArray = Array(state.playerNum).fill('').map((e,idx) => ({playerName: state.playerIcon[idx], position: 0}));
 
-  const firstCell = playerArray.reduce((initial,player) => initial + player.playerName, '');
-
   // initialize game state, define game interaction(moves), and define victory condition here.
   const emojiParty = {
     //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
     setup: () => ({
       // change 10 later
-      spaces: [firstCell, ...Array(state.mapSize - 1).fill(null)],
       dieRoll: 6,
       players: playerArray
     }),
@@ -38,15 +35,7 @@ const GamePage = () => {
       },
       traverse: (G, ctx) => {
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
-        G.spaces[currentPlayer.position] === currentPlayer.playerName ?
-          G.spaces[currentPlayer.position] = null
-          : G.spaces[currentPlayer.position] = G.spaces[currentPlayer.position].replace(currentPlayer.playerName, '');
-
         currentPlayer.position++;
-
-        G.spaces[currentPlayer.position] ?
-          G.spaces[currentPlayer.position] += currentPlayer.playerName
-          : G.spaces[currentPlayer.position] = currentPlayer.playerName;
       }
     },
     endIf: (G, ctx) => {
@@ -63,13 +52,13 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug: true
+    debug: true 
   };
 
   const Game = Client(gameObj);
   return (
     <div className="game-page">
-      <Game mapLayout={state.mapLayout} />
+      <Game mapLayout={state.mapLayout} mapSize={state.mapSize} />
     </div>
   )
 }
