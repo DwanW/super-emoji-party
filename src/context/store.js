@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import createMap from '../components/game/map-generation';
-import { emojiIcon } from '../components/game/player-icon';
+import { emojiIcon } from '../assests/emoji/player-icons';
 
 // Global State
 const initialState = {

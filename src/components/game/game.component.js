@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiceFour } from '@fortawesome/free-solid-svg-icons';
 
 import './game.styles.scss';
-import { useSpring, animated } from 'react-spring'
 
 import Banner from '../banner/banner.component';
 
@@ -13,17 +12,6 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const [moveTrigger, setMoveTrigger] = useState(0);
   const [showBanner, setShowBanner] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
-
-  const winnerSpring = useSpring({
-    from: { backgroundColor: 'green' },
-    to: async next => {
-      while (1) {
-        console.log('omg')
-        await next({ backgroundColor: '#00ffff' });
-        await next({ backgroundColor: 'orange' });
-      }
-    },
-  })
 
   const updatedRollValue = useRef();
 
@@ -35,7 +23,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   //display turn banner at start of each turn
   useEffect(() => {
     setShowBanner(true);
-    let hide = setInterval(() => setShowBanner(false), 1400);
+    let hide = setInterval(() => setShowBanner(false), 1000);
     return () => clearInterval(hide);
   }, [ctx.turn])
 
@@ -52,22 +40,44 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     }
   }
 
-  const travel = () => {
+  const travel = (value) => {
     let currentPlayer = G.players[Number(ctx.currentPlayer)];
-    let rollValue = updatedRollValue.current;
-    let goalPosition = currentPlayer.position + rollValue;
-    //move player position and end turn after move is done;
-    if (goalPosition < mapSize - 1) {
-      for (let i = 0; i < rollValue; i++) {
-        setTimeout(() => moves.traverse(), i * 500);
+    if (value > 0) {
+      //move forward;
+      let goalPosition = currentPlayer.position + value;
+      if (goalPosition < mapSize - 1) {
+        for (let i = 0; i < value; i++) {
+          setTimeout(() => moves.traverse(true), i * 500);
+        }
+      } else {
+        for (let i = 0; i < ((mapSize - 1) - currentPlayer.position); i++) {
+          setTimeout(() => moves.traverse(true), i * 500);
+        }
+      }
+      setShowInfo(false);
+    } else if (value < 0) {
+      // move backward;
+      let goalPosition = currentPlayer.position - value;
+      if (goalPosition >= 0) {
+        for (let i = 0; i < Math.abs(value); i++) {
+          setTimeout(() => moves.traverse(false), i * 500);
+        }
+      } else {
+        for (let i = 0; i < currentPlayer.position; i++) {
+          setTimeout(() => moves.traverse(false), i * 500);
+        }
       }
     } else {
-      for (let i = 0; i < ((mapSize - 1) - currentPlayer.position); i++) {
-        setTimeout(() => moves.traverse(), i * 500);
-      }
+      return;
     }
-    setShowInfo(false);
   }
+  // generate background position (this is an EXPENSIVE operation)
+  const bgPosition = mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 0 ? 'right bottom'
+  : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 1 ? 'right top'
+    : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 2 ? 'center top'
+      : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 3 ? 'center bottom'
+        : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 4 ? 'left bottom'
+          : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 5 ? 'left top' : null;
 
   // generate cell;
   const cellWidth = 50;
@@ -103,7 +113,8 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         top: `${cellHeight * mapLayout[e.position].top}px`,
         left: `${cellWidth * mapLayout[e.position].left}px`,
         transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px)`,
-        opacity: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 1 : 0.6}`
+        opacity: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 1 : 0.6}`,
+        zIndex: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 5 : 1}`
       }}
       key={`player${idx}`}
     >
@@ -125,14 +136,16 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         /> : null}
 
 
-      {showInfo ? <div className='info' onAnimationEnd={() => travel()}>You rolled {updatedRollValue.current}</div> : null}
+      {showInfo ? <div className='info' onAnimationEnd={() => travel(updatedRollValue.current)}>You rolled {updatedRollValue.current}</div> : null}
       <div className='controls'>
         <button className='roll-dice' onClick={onClick}>
           <FontAwesomeIcon icon={faDiceFour} />
         </button>
         <button className='end-turn' onClick={() => events.endTurn()}>End Turn</button>
       </div>
-      {(ctx.gameover && ctx.gameover.winner) ? (<animated.div style={winnerSpring} className="winner">Winner: {ctx.gameover.winner}</animated.div>) : null}
+      {(ctx.gameover && ctx.gameover.winner) ? (<div className="winner">Winner: {ctx.gameover.winner}</div>) : null}
+
+      <div className='background' style={{backgroundPosition: `${bgPosition}`}}></div>
     </React.Fragment>
   );
 }

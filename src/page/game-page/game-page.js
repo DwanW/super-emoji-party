@@ -14,7 +14,7 @@ import './game-page.styles.scss';
 const GamePage = () => {
   const { state } = useContext(store);
 
-  const playerArray = Array(state.playerNum).fill('').map((e,idx) => ({playerName: state.playerIcon[idx], position: 0}));
+  const playerArray = Array(state.playerNum).fill('').map((e, idx) => ({ playerName: state.playerIcon[idx], position: 0 }));
 
   // initialize game state, define game interaction(moves), and define victory condition here.
   const emojiParty = {
@@ -33,16 +33,20 @@ const GamePage = () => {
       rollDie: (G, ctx) => {
         G.dieRoll = ctx.random.Die(6);
       },
-      traverse: (G, ctx) => {
+      traverse: (G, ctx, isForward) => {
+        console.log(isForward);
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
-        currentPlayer.position++;
-      }
+        isForward ? currentPlayer.position++ : currentPlayer.position--;
+      },
+      relocate: (G, ctx, idx) => {
+        let currentPlayer = G.players[Number(ctx.currentPlayer)];
+        currentPlayer.position = idx;
+      } 
     },
     endIf: (G, ctx) => {
       // change 10 later
       let currentPlayer = G.players[Number(ctx.currentPlayer)];
       if (currentPlayer.position >= state.mapSize - 1) {
-        console.log(currentPlayer.position);
         return { winner: currentPlayer.playerName };
       }
     },
@@ -52,7 +56,7 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug: true 
+    debug: true
   };
 
   const Game = Client(gameObj);

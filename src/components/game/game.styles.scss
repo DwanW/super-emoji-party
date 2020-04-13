@@ -34,7 +34,9 @@
     }
     .player {
         position: absolute;
-        transition: 0.3s
+        transition: 0.3s;
+        font-size: 30px;
+        padding: 5px;
     }
 }
 
@@ -46,6 +48,7 @@
     display:flex;
     justify-content: center;  
     align-items: center;
+    z-index: 99;
 
     .roll-dice {
         border: none;
@@ -80,13 +83,15 @@
 
 .info {
     @extend %position-shared;
-    top: 88vh;
+    top: 78vh;
     text-align: center;
     width: 200px;
-    height: 30px;  
+    height: 40px; 
+    font-size: 30px; 
     animation-name: fadeOut;
     animation-duration: 1.3s;
     animation-fill-mode: forwards;  
+    z-index: 99;
 }
 
 .winner{
@@ -94,9 +99,25 @@
     top: 30vh;
     margin: auto;
     text-align: center;
-    padding: 50px;
+    padding: 40px 20px;
     width: 200px;
     height: 130px;
+    box-shadow: 3px 3px 7px 1px gray;
+    font-size: 30px;
+    animation: flash;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite; 
+    z-index: 99;
+}
+
+.background {
+    @extend %position-shared;
+    height: 100vh;
+    background-image: url('../../assests/backgrounds/bg1.jpg');
+    transition: 0.6s;
+    opacity: 0.4;
+    z-index: -1;
 }
 
 @keyframes fadeOut {
@@ -108,5 +129,17 @@
     }
     to {
         opacity: 0;
+    }
+}
+
+@keyframes flash {
+    from {
+        background-color: rgb(168, 212, 170);
+    }
+    50% {
+        background-color: rgb(70, 209, 70);
+    }
+    to {
+        background-color: rgb(168, 212, 170);
     }
 }

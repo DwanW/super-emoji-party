@@ -7,30 +7,30 @@
 
 //[1,2,3,4] means moving direction [up, right, down ,left];
 
-//boarder 1024 x 673  //width:18, height: 11;
+//boarder 1024 x 673  //width:17, height: 10;
 
 const maxWidth = 18;
 const maxHeight = 11;
 const chanceToGoStraight = 0.4;
 
 const defineNextPossibleMoves = (top, left) => {
-    if (top > 0 && top < 11 && left > 0 && left < 18) {
+    if (top > 1 && top < maxHeight && left > 1 && left < maxWidth) {
         return [1, 2, 3, 4];
-    } else if (top > 0 && top < 11 && left < 18) {
+    } else if (top > 1 && top < maxHeight && left < maxWidth) {
         return [1, 2, 3];
-    } else if (top < 11 && left > 0 && left < 18) {
+    } else if (top < maxHeight && left > 1 && left < maxWidth) {
         return [2, 3, 4];
-    } else if (top > 0 && top < 11 && left > 0) {
+    } else if (top > 1 && top < maxHeight && left > 1) {
         return [1, 3, 4];
-    } else if (top > 0 && left > 0 && left < 18) {
+    } else if (top > 1 && left > 1 && left < maxWidth) {
         return [1, 2, 4];
-    } else if (top > 0 && left < 18) {
+    } else if (top > 1 && left < maxWidth) {
         return [1, 2];
-    } else if (top > 0 && left > 0 ) {
+    } else if (top > 1 && left > 1 ) {
         return [1, 4];
-    } else if (top < 11 && left > 0) {
+    } else if (top < maxHeight && left > 1) {
         return [3, 4];
-    } else if (top < 11 && left < 18) {
+    } else if (top < maxHeight && left < maxWidth) {
         return [2, 3];
     }
 };
@@ -105,7 +105,7 @@ const createMap = cellNum => {
                 cellToCreate--;
                 break;
             default:
-                console.log("what");
+                console.log("map-generation failed");
                 return;
         }
     }
