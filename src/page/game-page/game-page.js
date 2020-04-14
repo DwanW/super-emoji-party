@@ -14,7 +14,7 @@ import './game-page.styles.scss';
 const GamePage = () => {
   const { state } = useContext(store);
 
-  const playerArray = Array(state.playerNum).fill('').map((e, idx) => ({ playerName: state.playerIcon[idx], position: 0 }));
+  const playerArray = Array(state.playerNum).fill('').map((e, idx) => ({ playerName: state.playerIcon[idx], health: 50, spirit: 50, inventory: {}, position: 0 }));
 
   // initialize game state, define game interaction(moves), and define victory condition here.
   const emojiParty = {
@@ -36,7 +36,7 @@ const GamePage = () => {
         G.numOfRoll--;
       },
       traverse: (G, ctx, isForward) => {
-        console.log(isForward);
+        // console.log(isForward);
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
         isForward ? currentPlayer.position++ : currentPlayer.position--;
       },
@@ -65,7 +65,7 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug: false
+    debug: true
   };
 
   const Game = Client(gameObj);

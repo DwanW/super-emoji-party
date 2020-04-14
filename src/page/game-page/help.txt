@@ -1,0 +1,15 @@
+player attribute information:
+
+health: 0 health skip turn, more health decrease chance unfavorable encounter
+spirit: 0 spirit reduce roll to 1, more spirit increase roll range( eg: low spirit roll: 1~3, high spirit roll: 1~7)
+inventory: each player has three inventory slots, each can hold a unique item:
+    item type:
+        1. increase resistance against health reduction;
+        2. increase resistance against spirit reduction;
+        3. increase max health;
+        4. increase mas spirit;
+        5. health recovery bonus each turn;
+        6. spirit recovery bonus each turn;
+        7. increase base max roll;
+        8. increase base min roll;
+        9.

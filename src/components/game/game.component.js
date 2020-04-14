@@ -6,12 +6,14 @@ import { faDiceFour } from '@fortawesome/free-solid-svg-icons';
 import './game.styles.scss';
 
 import Banner from '../banner/banner.component';
+import { effects } from '../../assests/emoji/effects';
 
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const [moveTrigger, setMoveTrigger] = useState(0);
   const [showBanner, setShowBanner] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [showEffect, setShowEffect] = useState(false);
 
   const updatedRollValue = useRef();
 
@@ -41,37 +43,46 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   }
 
   const travel = async (value) => {
-    let currentPlayer = G.players[Number(ctx.currentPlayer)];
+    setShowInfo(false);
+    let currentPosition = G.players[Number(ctx.currentPlayer)].position;
+    let positionPointer = currentPosition;
     if (value > 0) {
       //move forward;
-      let goalPosition = currentPlayer.position + value;
+      let goalPosition = currentPosition + value;
       if (goalPosition < mapSize - 1) {
         for (let i = 0; i < value; i++) {
-          await new Promise((res, rej) => setTimeout(() => res(moves.traverse(true)), i ? 500 : 0));
+          await new Promise((res, rej) => setTimeout(() => res(moves.traverse(true)), i ? 400 : 0));
+          positionPointer++
         }
       } else {
-        for (let i = 0; i < ((mapSize - 1) - currentPlayer.position); i++) {
+        for (let i = 0; i < ((mapSize - 1) - currentPosition); i++) {
           setTimeout(() => moves.traverse(true), i * 500);
+          positionPointer++
         }
       }
-      console.log('worked?');
-      setShowInfo(false);
     } else if (value < 0) {
       // move backward;
-      let goalPosition = currentPlayer.position - value;
+      let goalPosition = currentPosition - value;
       if (goalPosition >= 0) {
         for (let i = 0; i < Math.abs(value); i++) {
-          setTimeout(() => moves.traverse(false), i * 500);
+          await new Promise((res, rej) => setTimeout(() => res(moves.traverse(false)), i ? 400 : 0));
+          positionPointer--
         }
       } else {
-        for (let i = 0; i < currentPlayer.position; i++) {
+        for (let i = 0; i < currentPosition; i++) {
           setTimeout(() => moves.traverse(false), i * 500);
+          positionPointer--
         }
       }
     } else {
       return;
     }
+    if(mapLayout[positionPointer].effect !== 'none'){
+      console.log(mapLayout[positionPointer].effect);
+      setShowEffect(true);
+    }
   }
+
   // generate background position (this is an EXPENSIVE operation)
   const bgPosition = mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 0 ? 'right bottom'
     : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 1 ? 'right top'
@@ -99,10 +110,11 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         top: `${cellHeight * e.top}px`,
         left: `${cellWidth * e.left}px`,
         transform: `translateZ(${(e.elevation * 50)}px)`,
-        opacity: `${(e.elevation === mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation) ? 1 : 0.25}`
+        opacity: `${(e.elevation === mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation) ? 1 : 0.1}`
       }}
       key={idx}
     >
+      <span className='effect-icon'>{e.effect !== 'none' ? effects[e.effectCategory][e.effect] : null}</span>
     </div>
     )
   )
@@ -129,6 +141,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         <div className='cell-container'>{boardNode}</div>
         {playerNode}
       </div>
+      {showEffect ? <div>{G.players[Number(ctx.currentPlayer)].position}</div> : null}
 
       {showBanner ?
         <Banner

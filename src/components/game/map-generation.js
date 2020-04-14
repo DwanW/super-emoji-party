@@ -1,3 +1,36 @@
+import { effects } from '../../assests/emoji/effects';
+
+
+// define effect generation probability
+const buildingProb = 0.1;
+const foodProb = 0.05;
+const animalProb = 0.05;
+const weatherProb = 0.1;
+const transportProb = 0.01;
+
+// sum of weights must be <= 1;
+const weights = [buildingProb, foodProb, animalProb, weatherProb, transportProb];
+const correspondingResult = ['buildings', 'foods', 'animals', 'weather', 'transportation'];
+
+const getRandomEffect = () => {
+    let randomNum = Math.random(),
+        sum = 0,
+        lastIndex = weights.length - 1;
+
+    for (let i = 0; i < lastIndex; ++i) {
+        if (weights[i] === 0) {
+            continue;
+        }
+        sum += weights[i];
+        if (randomNum < sum) {
+            let keyArray = Object.keys(effects[correspondingResult[i]]);
+            let randomEffect = keyArray[Math.floor(Math.random() * keyArray.length)]
+            return {effectCategory: correspondingResult[i], effect: randomEffect};
+        }
+    }
+    return {effectCategory: 'none', effect: 'none'};
+}
+
 // const template = {
 //     top: 0,
 //     left: 0,
@@ -26,7 +59,7 @@ const defineNextPossibleMoves = (top, left) => {
         return [1, 2, 4];
     } else if (top > 1 && left < maxWidth) {
         return [1, 2];
-    } else if (top > 1 && left > 1 ) {
+    } else if (top > 1 && left > 1) {
         return [1, 4];
     } else if (top < maxHeight && left > 1) {
         return [3, 4];
@@ -41,6 +74,7 @@ const createMap = cellNum => {
             top: Math.round((Math.random() * maxHeight)),
             left: Math.round((Math.random() * maxWidth)),
             elevation: 0,
+            effectCategory:'buildings',
             effect: "home",
         }
     ];
@@ -57,16 +91,20 @@ const createMap = cellNum => {
     }
 
     while (cellToCreate !== 0) {
-        let move =
-            possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+        let move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
         switch (move) {
             case 1:
                 top--;
                 increaseEle();
-                board.push({ top: top, left: left, elevation: elevation, effect: "none" });
+                if (cellToCreate === 1) {
+                    board.push({ top: top, left: left, elevation: elevation, effectCategory:'none', effect: 'none' });
+                    cellToCreate--;
+                    break;
+                }
+                board.push({ top: top, left: left, elevation: elevation, ...getRandomEffect() });
                 possibleMoves = defineNextPossibleMoves(top, left);
                 possibleMoves = possibleMoves.filter(e => e !== 3);
-                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight){
+                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight) {
                     possibleMoves = [1];
                 }
                 cellToCreate--;
@@ -74,10 +112,15 @@ const createMap = cellNum => {
             case 2:
                 left++;
                 increaseEle();
-                board.push({ top: top, left: left, elevation: elevation, effect: "none" });
+                if (cellToCreate === 1) {
+                    board.push({ top: top, left: left, elevation: elevation, effectCategory:'none', effect: 'none' });
+                    cellToCreate--;
+                    break;
+                }
+                board.push({ top: top, left: left, elevation: elevation, ...getRandomEffect() });
                 possibleMoves = defineNextPossibleMoves(top, left);
                 possibleMoves = possibleMoves.filter(e => e !== 4);
-                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight){
+                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight) {
                     possibleMoves = [2];
                 }
                 cellToCreate--;
@@ -85,10 +128,15 @@ const createMap = cellNum => {
             case 3:
                 top++;
                 increaseEle();
-                board.push({ top: top, left: left, elevation: elevation, effect: "none" });
+                if (cellToCreate === 1) {
+                    board.push({ top: top, left: left, elevation: elevation, effectCategory:'none', effect: 'none' });
+                    cellToCreate--;
+                    break;
+                }
+                board.push({ top: top, left: left, elevation: elevation, ...getRandomEffect() });
                 possibleMoves = defineNextPossibleMoves(top, left);
                 possibleMoves = possibleMoves.filter(e => e !== 1);
-                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight){
+                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight) {
                     possibleMoves = [3];
                 }
                 cellToCreate--;
@@ -96,10 +144,15 @@ const createMap = cellNum => {
             case 4:
                 left--;
                 increaseEle();
-                board.push({ top: top, left: left, elevation: elevation, effect: "none" });
+                if (cellToCreate === 1) {
+                    board.push({ top: top, left: left, elevation: elevation, effectCategory:'none', effect: 'none' });
+                    cellToCreate--;
+                    break;
+                }
+                board.push({ top: top, left: left, elevation: elevation, ...getRandomEffect() });
                 possibleMoves = defineNextPossibleMoves(top, left);
                 possibleMoves = possibleMoves.filter(e => e !== 2);
-                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight){
+                if (possibleMoves.length === 3 && Math.random() < chanceToGoStraight) {
                     possibleMoves = [4];
                 }
                 cellToCreate--;
@@ -109,6 +162,7 @@ const createMap = cellNum => {
                 return;
         }
     }
+    console.log(board);
     return board;
 };
 

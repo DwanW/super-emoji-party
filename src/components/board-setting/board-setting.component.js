@@ -19,7 +19,7 @@ const BoardSetting = () => {
         leave: { opacity: 0 },
     })
 
-    console.log(state.playerNum);
+    console.log('player number', state.playerNum);
     const onMapSizeChange = (e) => {
         dispatch(setMapSize(Number(e.target.value)))
     }

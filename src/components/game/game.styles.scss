@@ -6,7 +6,7 @@
 }
 
 .board {
-    perspective: 1000px;
+    perspective: 2000px;
     perspective-origin: center;  
     transform-style: preserve-3d;
     transform: rotateX(5deg)  rotateY(5deg);
@@ -25,11 +25,15 @@
             transition: 0.5s
         }
 
-        :first-child{
+        div:first-child{
             background-color:rgba(255, 255, 0, 0.473)
         }
-        :last-child{
+        div:last-child{
             background-color:rgba(0, 128, 0, 0.377)
+        }
+        .effect-icon {
+            font-size: 40px;
+            color: white;
         }
     }
     .player {
