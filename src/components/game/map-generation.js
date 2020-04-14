@@ -41,7 +41,7 @@ const createMap = cellNum => {
             top: Math.round((Math.random() * maxHeight)),
             left: Math.round((Math.random() * maxWidth)),
             elevation: 0,
-            effect: "none"
+            effect: "home",
         }
     ];
     let top = board[0].top;

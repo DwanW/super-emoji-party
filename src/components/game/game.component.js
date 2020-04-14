@@ -29,7 +29,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
 
   const onClick = async () => {
-    if (!ctx.gameover) {
+    if (!ctx.gameover && G.numOfRoll > 0) {
       //roll dice
       await moves.rollDie();
       //update component
@@ -40,20 +40,21 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     }
   }
 
-  const travel = (value) => {
+  const travel = async (value) => {
     let currentPlayer = G.players[Number(ctx.currentPlayer)];
     if (value > 0) {
       //move forward;
       let goalPosition = currentPlayer.position + value;
       if (goalPosition < mapSize - 1) {
         for (let i = 0; i < value; i++) {
-          setTimeout(() => moves.traverse(true), i * 500);
+          await new Promise((res, rej) => setTimeout(() => res(moves.traverse(true)), i ? 500 : 0));
         }
       } else {
         for (let i = 0; i < ((mapSize - 1) - currentPlayer.position); i++) {
           setTimeout(() => moves.traverse(true), i * 500);
         }
       }
+      console.log('worked?');
       setShowInfo(false);
     } else if (value < 0) {
       // move backward;
@@ -73,11 +74,11 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   }
   // generate background position (this is an EXPENSIVE operation)
   const bgPosition = mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 0 ? 'right bottom'
-  : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 1 ? 'right top'
-    : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 2 ? 'center top'
-      : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 3 ? 'center bottom'
-        : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 4 ? 'left bottom'
-          : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 5 ? 'left top' : null;
+    : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 1 ? 'right top'
+      : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 2 ? 'center top'
+        : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 3 ? 'center bottom'
+          : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 4 ? 'left bottom'
+            : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 5 ? 'left top' : null;
 
   // generate cell;
   const cellWidth = 50;
@@ -138,14 +139,14 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
       {showInfo ? <div className='info' onAnimationEnd={() => travel(updatedRollValue.current)}>You rolled {updatedRollValue.current}</div> : null}
       <div className='controls'>
-        <button className='roll-dice' onClick={onClick}>
+        <button className='roll-dice' onClick={onClick} style={{ color: G.numOfRoll ? 'green' : 'gray' }}>
           <FontAwesomeIcon icon={faDiceFour} />
         </button>
         <button className='end-turn' onClick={() => events.endTurn()}>End Turn</button>
       </div>
       {(ctx.gameover && ctx.gameover.winner) ? (<div className="winner">Winner: {ctx.gameover.winner}</div>) : null}
 
-      <div className='background' style={{backgroundPosition: `${bgPosition}`}}></div>
+      <div className='background' style={{ backgroundPosition: `${bgPosition}` }}></div>
     </React.Fragment>
   );
 }

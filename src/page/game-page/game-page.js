@@ -22,6 +22,7 @@ const GamePage = () => {
     setup: () => ({
       // change 10 later
       dieRoll: 6,
+      numOfRoll: 1,
       players: playerArray
     }),
     // phase: {
@@ -32,6 +33,7 @@ const GamePage = () => {
     moves: {
       rollDie: (G, ctx) => {
         G.dieRoll = ctx.random.Die(6);
+        G.numOfRoll--;
       },
       traverse: (G, ctx, isForward) => {
         console.log(isForward);
@@ -41,8 +43,15 @@ const GamePage = () => {
       relocate: (G, ctx, idx) => {
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
         currentPlayer.position = idx;
-      } 
+      }
     },
+
+    turn: {
+      onBegin: (G) => {
+        G.numOfRoll = 1;
+      }
+    },
+
     endIf: (G, ctx) => {
       // change 10 later
       let currentPlayer = G.players[Number(ctx.currentPlayer)];
@@ -56,7 +65,7 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug: true
+    debug: false
   };
 
   const Game = Client(gameObj);
