@@ -13,7 +13,24 @@ export const effects = {
     },
     foods: {
         pizza:'🍕',
-        burger:'🍔',
+        burger:{
+            icon:'🍔',
+            description: 'A wild burger has Appeared',
+            choices: [
+                {
+                    title: 'Eat it',
+                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite'
+                },
+                {
+                    title: 'Inspect it',
+                    text: 'the uspicious looking burger makes you wonder what is inside'
+                },
+                {
+                    title: 'Step on it',
+                    text: 'I must destroy this socery'
+                }
+            ]
+        },
         hotdog:'🌭',
         bacon:'🥓',
         chickenleg:'🍗',

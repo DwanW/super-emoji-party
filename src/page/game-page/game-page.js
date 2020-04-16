@@ -23,7 +23,8 @@ const GamePage = () => {
       // change 10 later
       dieRoll: 6,
       numOfRoll: 1,
-      players: playerArray
+      players: playerArray,
+      choicePointer: 0
     }),
     // phase: {
     //   rollDie:{
@@ -43,6 +44,9 @@ const GamePage = () => {
       relocate: (G, ctx, idx) => {
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
         currentPlayer.position = idx;
+      },
+      setChoice: (G, ctx, idx) => {
+        G.choicePointer = idx;
       }
     },
 

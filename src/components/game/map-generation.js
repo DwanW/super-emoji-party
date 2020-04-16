@@ -3,7 +3,7 @@ import { effects } from '../../assests/emoji/effects';
 
 // define effect generation probability
 const buildingProb = 0.1;
-const foodProb = 0.05;
+const foodProb = 0.4;
 const animalProb = 0.05;
 const weatherProb = 0.1;
 const transportProb = 0.01;
@@ -25,11 +25,13 @@ const getRandomEffect = () => {
         if (randomNum < sum) {
             let keyArray = Object.keys(effects[correspondingResult[i]]);
             let randomEffect = keyArray[Math.floor(Math.random() * keyArray.length)]
-            return {effectCategory: correspondingResult[i], effect: randomEffect};
+            return {effectCategory: 'foods', effect: 'burger'};
         }
     }
     return {effectCategory: 'none', effect: 'none'};
 }
+
+//return {effectCategory: correspondingResult[i], effect: randomEffect};
 
 // const template = {
 //     top: 0,

@@ -12,4 +12,10 @@ inventory: each player has three inventory slots, each can hold a unique item:
         6. spirit recovery bonus each turn;
         7. increase base max roll;
         8. increase base min roll;
-        9.
+
+choice consequence type:
+    1. change health/spirit;
+    2. move back/forward a certain amount;
+    3. relocate
+    4. add/remove/replace item into inventory;
+    5. mini(quiz/game)

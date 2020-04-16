@@ -6,6 +6,7 @@ import { faDiceFour } from '@fortawesome/free-solid-svg-icons';
 import './game.styles.scss';
 
 import Banner from '../banner/banner.component';
+import EffectCard from '../effect-card/effect-card.component';
 import { effects } from '../../assests/emoji/effects';
 
 //this component sets up the view layer
@@ -29,6 +30,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     return () => clearInterval(hide);
   }, [ctx.turn])
 
+  const currentplayerObj = G.players[Number(ctx.currentPlayer)];
 
   const onClick = async () => {
     if (!ctx.gameover && G.numOfRoll > 0) {
@@ -44,7 +46,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
   const travel = async (value) => {
     setShowInfo(false);
-    let currentPosition = G.players[Number(ctx.currentPlayer)].position;
+    let currentPosition = currentplayerObj.position;
     let positionPointer = currentPosition;
     if (value > 0) {
       //move forward;
@@ -52,12 +54,12 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       if (goalPosition < mapSize - 1) {
         for (let i = 0; i < value; i++) {
           await new Promise((res, rej) => setTimeout(() => res(moves.traverse(true)), i ? 400 : 0));
-          positionPointer++
+          positionPointer++;
         }
       } else {
         for (let i = 0; i < ((mapSize - 1) - currentPosition); i++) {
           setTimeout(() => moves.traverse(true), i * 500);
-          positionPointer++
+          positionPointer++;
         }
       }
     } else if (value < 0) {
@@ -66,30 +68,33 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       if (goalPosition >= 0) {
         for (let i = 0; i < Math.abs(value); i++) {
           await new Promise((res, rej) => setTimeout(() => res(moves.traverse(false)), i ? 400 : 0));
-          positionPointer--
+          positionPointer--;
         }
       } else {
         for (let i = 0; i < currentPosition; i++) {
           setTimeout(() => moves.traverse(false), i * 500);
-          positionPointer--
+          positionPointer--;
         }
       }
     } else {
       return;
     }
-    if(mapLayout[positionPointer].effect !== 'none'){
-      console.log(mapLayout[positionPointer].effect);
-      setShowEffect(true);
+    if (mapLayout[positionPointer].effect !== 'none') {
+      setTimeout(()=>setShowEffect(true),500);
     }
   }
 
+  const onEffectExit = () => {
+    setShowEffect(false);
+  }
+
   // generate background position (this is an EXPENSIVE operation)
-  const bgPosition = mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 0 ? 'right bottom'
-    : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 1 ? 'right top'
-      : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 2 ? 'center top'
-        : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 3 ? 'center bottom'
-          : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 4 ? 'left bottom'
-            : mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation % 6 === 5 ? 'left top' : null;
+  const bgPosition = mapLayout[currentplayerObj.position].elevation % 6 === 0 ? 'right bottom'
+    : mapLayout[currentplayerObj.position].elevation % 6 === 1 ? 'right top'
+      : mapLayout[currentplayerObj.position].elevation % 6 === 2 ? 'center top'
+        : mapLayout[currentplayerObj.position].elevation % 6 === 3 ? 'center bottom'
+          : mapLayout[currentplayerObj.position].elevation % 6 === 4 ? 'left bottom'
+            : mapLayout[currentplayerObj.position].elevation % 6 === 5 ? 'left top' : null;
 
   // generate cell;
   const cellWidth = 50;
@@ -110,11 +115,11 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         top: `${cellHeight * e.top}px`,
         left: `${cellWidth * e.left}px`,
         transform: `translateZ(${(e.elevation * 50)}px)`,
-        opacity: `${(e.elevation === mapLayout[G.players[Number(ctx.currentPlayer)].position].elevation) ? 1 : 0.1}`
+        opacity: `${(e.elevation === mapLayout[currentplayerObj.position].elevation) ? 1 : 0.1}`
       }}
       key={idx}
     >
-      <span className='effect-icon'>{e.effect !== 'none' ? effects[e.effectCategory][e.effect] : null}</span>
+      <span className='effect-icon'>{e.effect !== 'none' ? effects[e.effectCategory][e.effect].icon : null}</span>
     </div>
     )
   )
@@ -126,27 +131,35 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         top: `${cellHeight * mapLayout[e.position].top}px`,
         left: `${cellWidth * mapLayout[e.position].left}px`,
         transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px)`,
-        opacity: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 1 : 0.6}`,
-        zIndex: `${(G.players[Number(ctx.currentPlayer)].playerName === e.playerName) ? 5 : 1}`
+        opacity: `${(currentplayerObj.playerName === e.playerName) ? 1 : 0.6}`,
+        zIndex: `${(currentplayerObj.playerName === e.playerName) ? 5 : 1}`
       }}
       key={`player${idx}`}
     >
       {e.playerName}
     </div>)
   )
-
+      console.log(G.choicePointer);
   return (
     <React.Fragment>
       <div className='board'>
         <div className='cell-container'>{boardNode}</div>
         {playerNode}
       </div>
-      {showEffect ? <div>{G.players[Number(ctx.currentPlayer)].position}</div> : null}
+      {showEffect ?
+        <EffectCard
+          playerObj={currentplayerObj}
+          effect={mapLayout[currentplayerObj.position].effect}
+          effectCategory={mapLayout[currentplayerObj.position].effectCategory}
+          onExit={onEffectExit}
+          onSelect={moves.setChoice}
+          currentChoice={G.choicePointer}
+        /> : null}
 
       {showBanner ?
         <Banner
           turn={ctx.turn}
-          playerName={G.players[Number(ctx.currentPlayer)].playerName}
+          playerName={currentplayerObj.playerName}
         /> : null}
 
 
