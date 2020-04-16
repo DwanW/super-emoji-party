@@ -52,7 +52,7 @@
     display:flex;
     justify-content: center;  
     align-items: center;
-    z-index: 99;
+    z-index: 2;
 
     .roll-dice {
         border: none;
@@ -84,6 +84,24 @@
     
 }
 
+.result-container {
+    width: 300px;
+    height: 140px; 
+    font-size: 30px; 
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .result-description {
+        padding: 10px;
+        flex-grow: 1;
+    }
+
+    .result-value {
+        padding: 10px
+    }
+}
+
 .info {
     @extend %position-shared;
     top: 78vh;
@@ -94,7 +112,7 @@
     animation-name: fadeOut;
     animation-duration: 1.3s;
     animation-fill-mode: forwards;  
-    z-index: 99;
+    z-index: 2;
 }
 
 .winner{
@@ -111,7 +129,7 @@
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite; 
-    z-index: 99;
+    z-index: 2;
 }
 
 .background {

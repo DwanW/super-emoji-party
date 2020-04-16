@@ -7,6 +7,7 @@ import './game.styles.scss';
 
 import Banner from '../banner/banner.component';
 import EffectCard from '../effect-card/effect-card.component';
+import Modal from '../custom-modal/custom-modal.component';
 import { effects } from '../../assests/emoji/effects';
 
 //this component sets up the view layer
@@ -15,6 +16,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const [showBanner, setShowBanner] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [showEffect, setShowEffect] = useState(false);
+  const [showEffectResult, setShowEffectResult] = useState(false);
 
   const updatedRollValue = useRef();
 
@@ -31,7 +33,10 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   }, [ctx.turn])
 
   const currentplayerObj = G.players[Number(ctx.currentPlayer)];
+  const currentEffect = mapLayout[currentplayerObj.position].effect;
+  const currentEffectCategory = mapLayout[currentplayerObj.position].effectCategory;
 
+  // roll dice
   const onClick = async () => {
     if (!ctx.gameover && G.numOfRoll > 0) {
       //roll dice
@@ -44,6 +49,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     }
   }
 
+  //move player
   const travel = async (value) => {
     setShowInfo(false);
     let currentPosition = currentplayerObj.position;
@@ -80,13 +86,32 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       return;
     }
     if (mapLayout[positionPointer].effect !== 'none') {
-      setTimeout(()=>setShowEffect(true),500);
+      setTimeout(() => setShowEffect(true), 500);
     }
   }
 
-  const onEffectExit = () => {
-    setShowEffect(false);
+  //calculate effect value
+  const getValue = (baseValue) => {
+    // G.currentEffectType
+    moves.setValue(baseValue);
   }
+
+  //hide effect modal and open result modal
+  const onEffectExit = () => {
+    if (G.choicePointer !== -1) {
+      getValue(effects[currentEffectCategory][currentEffect].choices[G.choicePointer].baseValue);
+      setShowEffect(false);
+      setShowEffectResult(true);
+    }
+  }
+
+  const onDescriptionExit = () => {
+    setShowEffectResult(false);
+    if (G.currentEffectType === 'MODIFY_HEALTH') {
+      moves.setHealth(G.currentEffectValue);
+    }
+  }
+
 
   // generate background position (this is an EXPENSIVE operation)
   const bgPosition = mapLayout[currentplayerObj.position].elevation % 6 === 0 ? 'right bottom'
@@ -105,7 +130,6 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     height: `${cellHeight}px`,
   };
 
-  // translate into an array of node
   // Generates board with Top Left at 0,0
   const boardNode = mapLayout.map((e, idx) =>
     (<div
@@ -124,6 +148,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     )
   )
 
+  //generate players on board
   const playerNode = G.players.map((e, idx) =>
     (<div
       className='player'
@@ -132,45 +157,69 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         left: `${cellWidth * mapLayout[e.position].left}px`,
         transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px)`,
         opacity: `${(currentplayerObj.playerName === e.playerName) ? 1 : 0.6}`,
-        zIndex: `${(currentplayerObj.playerName === e.playerName) ? 5 : 1}`
+        zIndex: `${(currentplayerObj.playerName !== e.playerName) ? 0 : 1}`
       }}
       key={`player${idx}`}
     >
       {e.playerName}
     </div>)
   )
-      console.log(G.choicePointer);
+
   return (
     <React.Fragment>
       <div className='board'>
         <div className='cell-container'>{boardNode}</div>
         {playerNode}
       </div>
-      {showEffect ?
+
+      <Modal
+        handleClose={onEffectExit}
+        show={showEffect}
+      >
         <EffectCard
           playerObj={currentplayerObj}
-          effect={mapLayout[currentplayerObj.position].effect}
-          effectCategory={mapLayout[currentplayerObj.position].effectCategory}
-          onExit={onEffectExit}
+          effect={currentEffect}
+          effectCategory={currentEffectCategory}
           onSelect={moves.setChoice}
           currentChoice={G.choicePointer}
-        /> : null}
+        />
+      </Modal>
 
-      {showBanner ?
-        <Banner
-          turn={ctx.turn}
-          playerName={currentplayerObj.playerName}
-        /> : null}
+      <Modal
+        handleClose={onDescriptionExit}
+        show={showEffectResult}
+      >
+        {showEffectResult ? <div className="result-container">
+          <div className='result-description'>{effects[currentEffectCategory][currentEffect].choices[G.choicePointer].resultDescription}</div>
+          <div className='result-value'>
+            {
+              (G.currentEffectType === 'MODIFY_HEALTH') ?
+                `Your Health is recovered by ${G.currentEffectValue}` : null
+            }
+          </div>
+        </div> : null
+        }
+      </Modal>
+
+      {
+        showBanner ?
+          <Banner
+            turn={ctx.turn}
+            playerName={currentplayerObj.playerName}
+          /> : null
+      }
 
 
       {showInfo ? <div className='info' onAnimationEnd={() => travel(updatedRollValue.current)}>You rolled {updatedRollValue.current}</div> : null}
+
+      {(ctx.gameover && ctx.gameover.winner) ? (<div className="winner">Winner: {ctx.gameover.winner}</div>) : null}
+
       <div className='controls'>
         <button className='roll-dice' onClick={onClick} style={{ color: G.numOfRoll ? 'green' : 'gray' }}>
           <FontAwesomeIcon icon={faDiceFour} />
         </button>
         <button className='end-turn' onClick={() => events.endTurn()}>End Turn</button>
       </div>
-      {(ctx.gameover && ctx.gameover.winner) ? (<div className="winner">Winner: {ctx.gameover.winner}</div>) : null}
 
       <div className='background' style={{ backgroundPosition: `${bgPosition}` }}></div>
     </React.Fragment>

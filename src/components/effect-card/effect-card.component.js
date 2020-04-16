@@ -3,7 +3,7 @@ import { effects } from '../../assests/emoji/effects'
 
 import './effect-card.styles.scss';
 
-const EffectCard = ({ playerObj, effect, effectCategory, onExit, onSelect, currentChoice }) => {
+const EffectCard = ({ playerObj, effect, effectCategory, onSelect, currentChoice }) => {
     return (
     <div className='effect-card'>
         <div className='player-container'>
@@ -25,14 +25,13 @@ const EffectCard = ({ playerObj, effect, effectCategory, onExit, onSelect, curre
         <div className='effect-choices'>
             {
                 effects[effectCategory][effect].choices.map((choiceObj, idx) => (
-                    <div className='choice' key={idx} onClick={()=> onSelect(idx)} style={{backgroundColor: idx===currentChoice? '#cfcfcf':'white'}}>
+                    <div className='choice' key={idx} onClick={()=> onSelect(idx,choiceObj.type)} style={{backgroundColor: idx===currentChoice? '#cfcfcf':'white'}}>
                         <h2>{choiceObj.title}</h2>
                         {choiceObj.text}
                     </div>
                 ))
             }
         </div>
-        <button className='confirm-button' onClick={onExit}>Proceed</button>
     </div>
 )}
 

@@ -24,7 +24,9 @@ const GamePage = () => {
       dieRoll: 6,
       numOfRoll: 1,
       players: playerArray,
-      choicePointer: 0
+      choicePointer: -1,
+      currentEffectType: '',
+      currentEffectValue: 0
     }),
     // phase: {
     //   rollDie:{
@@ -45,14 +47,39 @@ const GamePage = () => {
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
         currentPlayer.position = idx;
       },
-      setChoice: (G, ctx, idx) => {
+      setChoice: (G, ctx, idx, type) => {
         G.choicePointer = idx;
+        G.currentEffectType = type;
+      },
+      setValue: (G, ctx, value) => {
+        G.currentEffectValue = value;
+      },
+      setHealth: (G, ctx, value) => {
+        let currentPlayerHealth = G.players[Number(ctx.currentPlayer)].health;
+        let resultHealth = currentPlayerHealth + value;
+        if (resultHealth > 0) {
+          G.players[Number(ctx.currentPlayer)].health = resultHealth;
+        } else {
+          G.players[Number(ctx.currentPlayer)].health = 0;
+        }
+      },
+      setSpirit: (G, ctx, value) => {
+        let currentPlayerSpirit = G.players[Number(ctx.currentPlayer)].spirit;
+        let resultSpirit = currentPlayerSpirit + value;
+        if (resultSpirit > 0) {
+          G.players[Number(ctx.currentPlayer)].spirit = resultSpirit;
+        } else {
+          G.players[Number(ctx.currentPlayer)].spirit = 0;
+        }
       }
     },
 
     turn: {
       onBegin: (G) => {
         G.numOfRoll = 1;
+        G.choicePointer = -1;
+        G.currentEffectType = '';
+        G.currentEffectValue = 0;
       }
     },
 

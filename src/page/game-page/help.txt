@@ -14,8 +14,8 @@ inventory: each player has three inventory slots, each can hold a unique item:
         8. increase base min roll;
 
 choice consequence type:
-    1. change health/spirit;
-    2. move back/forward a certain amount;
-    3. relocate
-    4. add/remove/replace item into inventory;
-    5. mini(quiz/game)
+    0. change health/spirit;
+    1. move back/forward a certain amount;
+    2. relocate
+    3. add/remove/replace item into inventory;
+    4. mini(quiz/game)
