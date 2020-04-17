@@ -5,16 +5,13 @@ import { store } from '../../context/store';
 import GameBoard from '../../components/game/game.component';
 import { Client } from 'boardgame.io/react';
 
-
 import './game-page.styles.scss';
-
-
 
 //Game Page that renders the game client using the MainGame component;
 const GamePage = () => {
   const { state } = useContext(store);
 
-  const playerArray = Array(state.playerNum).fill('').map((e, idx) => ({ playerName: state.playerIcon[idx], health: 50, spirit: 50, inventory: {}, position: 0 }));
+  const playerArray = Array(state.playerNum).fill('').map((e, idx) => ({ playerName: state.playerIcon[idx], health: 11, spirit: 30, inventory: {}, position: 0 }));
 
   // initialize game state, define game interaction(moves), and define victory condition here.
   const emojiParty = {
@@ -26,16 +23,14 @@ const GamePage = () => {
       players: playerArray,
       choicePointer: -1,
       currentEffectType: '',
-      currentEffectValue: 0
+      currentEffectValue: 0,
+      outComeIdx: -1
     }),
-    // phase: {
-    //   rollDie:{
-
-    //   }
-    // },
     moves: {
       rollDie: (G, ctx) => {
-        G.dieRoll = ctx.random.Die(6);
+        let currentPlayer = G.players[Number(ctx.currentPlayer)];
+        let rollNum = Math.floor(10 / (1 + Math.pow(Math.E, 0.027425 * (50 - currentPlayer.spirit))));
+        G.dieRoll = ctx.random.Die(rollNum);
         G.numOfRoll--;
       },
       traverse: (G, ctx, isForward) => {
@@ -47,9 +42,29 @@ const GamePage = () => {
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
         currentPlayer.position = idx;
       },
-      setChoice: (G, ctx, idx, type) => {
+      setChoice: (G, ctx, idx, choiceObj) => {
+        let currentPlayerHealth = G.players[Number(ctx.currentPlayer)].health;
         G.choicePointer = idx;
-        G.currentEffectType = type;
+        let randomNum = ctx.random.Number();
+        if (currentPlayerHealth >= 30) {
+          let positiveChance = 0.1186 + 0.1693 * Math.log(currentPlayerHealth + 1);
+          if (randomNum < positiveChance) {
+            G.currentEffectType = choiceObj.outCome[0].type;
+            G.outComeIdx = 0;
+          } else {
+            G.currentEffectType = choiceObj.outCome[1].type;
+            G.outComeIdx = 1;
+          }
+        } else {
+          let positiveChance = 0.006777 * currentPlayerHealth + 0.5
+          if (randomNum < positiveChance) {
+            G.currentEffectType = choiceObj.outCome[0].type;
+            G.outComeIdx = 0;
+          } else {
+            G.currentEffectType = choiceObj.outCome[1].type;
+            G.outComeIdx = 1;
+          }
+        }
       },
       setValue: (G, ctx, value) => {
         G.currentEffectValue = value;
@@ -71,15 +86,18 @@ const GamePage = () => {
         } else {
           G.players[Number(ctx.currentPlayer)].spirit = 0;
         }
+      },
+      resetValue: (G) => {
+        G.choicePointer = -1;
+        G.currentEffectType = '';
+        G.currentEffectValue = 0;
+        G.outComeIdx = -1;
       }
     },
 
     turn: {
       onBegin: (G) => {
         G.numOfRoll = 1;
-        G.choicePointer = -1;
-        G.currentEffectType = '';
-        G.currentEffectValue = 0;
       }
     },
 

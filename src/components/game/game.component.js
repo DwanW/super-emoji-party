@@ -92,6 +92,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
   //calculate effect value
   const getValue = (baseValue) => {
+    // can be modified 
     // G.currentEffectType
     moves.setValue(baseValue);
   }
@@ -99,16 +100,42 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   //hide effect modal and open result modal
   const onEffectExit = () => {
     if (G.choicePointer !== -1) {
-      getValue(effects[currentEffectCategory][currentEffect].choices[G.choicePointer].baseValue);
+      getValue(effects[currentEffectCategory][currentEffect].choices[G.choicePointer].outCome[G.outComeIdx].baseValue);
       setShowEffect(false);
       setShowEffectResult(true);
     }
   }
 
+  // apply result
   const onDescriptionExit = () => {
     setShowEffectResult(false);
-    if (G.currentEffectType === 'MODIFY_HEALTH') {
-      moves.setHealth(G.currentEffectValue);
+    switch (G.currentEffectType) {
+      case 'MODIFY_HEALTH':
+        moves.setHealth(G.currentEffectValue);
+        break;
+      case 'MODIFY_SPIRIT':
+        moves.setSpirit(G.currentEffectValue);
+        break;
+      case 'MOVE':
+        travel(G.currentEffectValue);
+        break;
+      default:
+        console.log('no action');
+    }
+    moves.resetValue();
+  }
+
+  // show result before apply result
+  const displayResultText = () => {
+    switch (G.currentEffectType) {
+      case 'MODIFY_HEALTH':
+        return `Your Health is ${(G.outComeIdx === 0)? 'recovered':'decreased'} by ${G.currentEffectValue}`;
+      case 'MODIFY_SPIRIT':
+        return `Your Spirit is ${(G.outComeIdx === 0)? 'replenished':'decreased'} by ${G.currentEffectValue}`;
+      case 'MOVE':
+        return `Move ${(G.outComeIdx === 0)? 'forward':'backward'} by ${G.currentEffectValue}`;
+      default:
+        console.log('not a coded action description');
     }
   }
 
@@ -190,12 +217,9 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         show={showEffectResult}
       >
         {showEffectResult ? <div className="result-container">
-          <div className='result-description'>{effects[currentEffectCategory][currentEffect].choices[G.choicePointer].resultDescription}</div>
+          <div className='result-description'>{effects[currentEffectCategory][currentEffect].choices[G.choicePointer].outCome[G.outComeIdx].resultDescription}</div>
           <div className='result-value'>
-            {
-              (G.currentEffectType === 'MODIFY_HEALTH') ?
-                `Your Health is recovered by ${G.currentEffectValue}` : null
-            }
+            {displayResultText()}
           </div>
         </div> : null
         }

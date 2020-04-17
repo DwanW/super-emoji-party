@@ -1,7 +1,7 @@
 player attribute information:
 
-health: 0 health skip turn, more health decrease chance unfavorable encounter
-spirit: 0 spirit reduce roll to 1, more spirit increase roll range( eg: low spirit roll: 1~3, high spirit roll: 1~7)
+health/positivity: 0 health skip turn, more health decrease chance unfavorable encounter
+spirit: low spirit reduce max roll to 1, more spirit increase roll range( eg: low spirit roll: 1~3, high spirit roll: 1~7)
 inventory: each player has three inventory slots, each can hold a unique item:
     item type:
         1. increase resistance against health reduction;
@@ -19,3 +19,16 @@ choice consequence type:
     2. relocate
     3. add/remove/replace item into inventory;
     4. mini(quiz/game)
+
+rolldie value calculation:
+ 1 ~ (1-7)
+    roll = Math.floor(8/(1+Math.pow(Math.E,0.027425*(50-spirit))));(sigmoidal - logistic function)
+
+base positive encounter chance = 0.7;
+base negative encounter chance = 0.3;
+
+positive encounter chance range = 0.5(-20%) to 0.9 (+20%);
+negative encounter chance = 0.1 (-20%) to 0.5 (+20%);
+
+ above >=30   bonus chance = 0.1693 ln( health + 1) - 0.5814 (logrithmic)
+ below 30   bonus chance = 0.006777 health - 0.2    (linear)

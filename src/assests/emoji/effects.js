@@ -20,23 +20,50 @@ export const effects = {
                 {
                     title: 'Eat it',
                     text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
-                    type: 'MODIFY_HEALTH',
-                    baseValue: 20,
-                    resultDescription: 'You took one big bite, the burger is more delicious than you would expect.',
+                    outCome: [
+                        {
+                            type: 'MODIFY_HEALTH',
+                            baseValue: 20,
+                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                        },
+                        {
+                            type: 'MODIFY_HEALTH',
+                            baseValue: -10,
+                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                        }
+                    ],
                 },
                 {
                     title: 'Inspect it',
-                    text: 'the uspicious looking burger makes you wonder what is inside',
-                    type: 'MODIFY_SPIRIT',
-                    baseValue: 20,
-                    resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                    text: "the suspicious looking burger makes you wonder what's inside",
+                    outCome: [
+                        {
+                            type: 'MODIFY_SPIRIT',
+                            baseValue: 20,
+                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                        },
+                        {
+                            type: 'MODIFY_SPIRIT',
+                            baseValue: -10,
+                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                        }
+                    ],
                 },
                 {
                     title: 'Step on it',
-                    text: 'I must destroy this socery',
-                    type: 'MOVE',
-                    baseValue: 2,
-                    resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                    text: 'I must destroy this sorcery',
+                    outCome: [
+                        {
+                            type: 'MOVE',
+                            baseValue: 2,
+                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                        },
+                        {
+                            type: 'MOVE',
+                            baseValue: -1,
+                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                        }
+                    ],
                 }
             ]
         },

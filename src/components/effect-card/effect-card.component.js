@@ -25,7 +25,7 @@ const EffectCard = ({ playerObj, effect, effectCategory, onSelect, currentChoice
         <div className='effect-choices'>
             {
                 effects[effectCategory][effect].choices.map((choiceObj, idx) => (
-                    <div className='choice' key={idx} onClick={()=> onSelect(idx,choiceObj.type)} style={{backgroundColor: idx===currentChoice? '#cfcfcf':'white'}}>
+                    <div className='choice' key={idx} onClick={()=> onSelect(idx,choiceObj)} style={{backgroundColor: idx===currentChoice? '#cfcfcf':'white'}}>
                         <h2>{choiceObj.title}</h2>
                         {choiceObj.text}
                     </div>
