@@ -110,11 +110,8 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const onDescriptionExit = () => {
     setShowEffectResult(false);
     switch (G.currentEffectType) {
-      case 'MODIFY_HEALTH':
-        moves.setHealth(G.currentEffectValue);
-        break;
-      case 'MODIFY_SPIRIT':
-        moves.setSpirit(G.currentEffectValue);
+      case 'MODIFY_STATS':
+        moves.setStats(G.currentEffectValue);
         break;
       case 'MOVE':
         travel(G.currentEffectValue);
@@ -128,10 +125,14 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   // show result before apply result
   const displayResultText = () => {
     switch (G.currentEffectType) {
-      case 'MODIFY_HEALTH':
-        return `Your Health is ${(G.outComeIdx === 0)? 'recovered':'decreased'} by ${G.currentEffectValue}`;
-      case 'MODIFY_SPIRIT':
-        return `Your Spirit is ${(G.outComeIdx === 0)? 'replenished':'decreased'} by ${G.currentEffectValue}`;
+      case 'MODIFY_STATS':
+        if(G.currentEffectValue[0] && G.currentEffectValue[1] ){
+          return `Your Health is ${(G.outComeIdx === 0)? 'recovered':'decreased'} by ${G.currentEffectValue[0]} and Your Spirit is ${(G.outComeIdx === 0)? 'replenished':'decreased'} by ${G.currentEffectValue[1]}`;
+        } else if (G.currentEffectValue[0]){
+          return `Your Health is ${(G.outComeIdx === 0)? 'recovered':'decreased'} by ${G.currentEffectValue[0]}`;
+        } else {
+          return `Your Spirit is ${(G.outComeIdx === 0)? 'replenished':'decreased'} by ${G.currentEffectValue[1]}`;
+        }
       case 'MOVE':
         return `Move ${(G.outComeIdx === 0)? 'forward':'backward'} by ${G.currentEffectValue}`;
       default:

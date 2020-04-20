@@ -2,11 +2,11 @@ import { effects } from '../../assests/emoji/effects';
 
 
 // define effect generation probability
-const buildingProb = 0.1;
-const foodProb = 0.4;
-const animalProb = 0.05;
-const weatherProb = 0.1;
-const transportProb = 0.01;
+const buildingProb = 0.2;
+const foodProb = 0.2;
+const animalProb = 0.1;
+const weatherProb = 0.2;
+const transportProb = 0.2;
 
 // sum of weights must be <= 1;
 const weights = [buildingProb, foodProb, animalProb, weatherProb, transportProb];
@@ -17,7 +17,7 @@ const getRandomEffect = () => {
         sum = 0,
         lastIndex = weights.length - 1;
 
-    for (let i = 0; i < lastIndex; ++i) {
+    for (let i = 0; i < lastIndex; i++) {
         if (weights[i] === 0) {
             continue;
         }
@@ -25,7 +25,7 @@ const getRandomEffect = () => {
         if (randomNum < sum) {
             let keyArray = Object.keys(effects[correspondingResult[i]]);
             let randomEffect = keyArray[Math.floor(Math.random() * keyArray.length)]
-            return {effectCategory: 'foods', effect: 'burger'};
+            return {effectCategory: correspondingResult[i], effect: randomEffect};
         }
     }
     return {effectCategory: 'none', effect: 'none'};

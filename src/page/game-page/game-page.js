@@ -69,22 +69,24 @@ const GamePage = () => {
       setValue: (G, ctx, value) => {
         G.currentEffectValue = value;
       },
-      setHealth: (G, ctx, value) => {
+      setStats: (G, ctx, value) => {
         let currentPlayerHealth = G.players[Number(ctx.currentPlayer)].health;
-        let resultHealth = currentPlayerHealth + value;
-        if (resultHealth > 0) {
-          G.players[Number(ctx.currentPlayer)].health = resultHealth;
-        } else {
-          G.players[Number(ctx.currentPlayer)].health = 0;
-        }
-      },
-      setSpirit: (G, ctx, value) => {
         let currentPlayerSpirit = G.players[Number(ctx.currentPlayer)].spirit;
-        let resultSpirit = currentPlayerSpirit + value;
-        if (resultSpirit > 0) {
-          G.players[Number(ctx.currentPlayer)].spirit = resultSpirit;
-        } else {
-          G.players[Number(ctx.currentPlayer)].spirit = 0;
+        if (value[0]){
+          let resultHealth = currentPlayerHealth + value[0];
+          if (resultHealth > 0) {
+            G.players[Number(ctx.currentPlayer)].health = resultHealth;
+          } else {
+            G.players[Number(ctx.currentPlayer)].health = 0;
+          }
+        }
+        if (value[1]){
+          let resultSpirit = currentPlayerSpirit + value[1];
+          if (resultSpirit > 0) {
+            G.players[Number(ctx.currentPlayer)].spirit = resultSpirit;
+          } else {
+            G.players[Number(ctx.currentPlayer)].spirit = 0;
+          }
         }
       },
       resetValue: (G) => {
