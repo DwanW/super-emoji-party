@@ -4,6 +4,7 @@ import { store } from '../../context/store';
 
 import GameBoard from '../../components/game/game.component';
 import { Client } from 'boardgame.io/react';
+// import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
 import './game-page.styles.scss';
 
@@ -116,7 +117,7 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug: true
+    debug: false
   };
 
   const Game = Client(gameObj);

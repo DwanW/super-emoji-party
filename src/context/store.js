@@ -2,12 +2,13 @@ import React, { createContext, useReducer } from 'react';
 import createMap from '../components/game/map-generation';
 import { emojiIcon } from '../assests/emoji/player-icons';
 
-// Global State
+// Global App Initial State
 const initialState = {
   playerNum: 2,
   mapSize: 10,
   mapLayout: createMap(10),
   playerIcon: [emojiIcon[0], emojiIcon[1]],
+  isLoading: false
 };
 
 // This create Global context

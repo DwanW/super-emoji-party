@@ -5,12 +5,96 @@
     align-items: center;
     position:absolute;
     width: 100%;
-    margin: 20% auto 0% auto;
+    margin: 15% auto 0% auto;
     
-    .menu-option{
-        background-color: yellow;
-        text-decoration: none;
-        margin: 5px 0px;
-        cursor: pointer;
+    .option-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        position: relative;
+        height: 200px;
+
+        .menu-option{
+            color: inherit;
+            text-decoration: none;
+            padding: 5px;
+            font-size: 22px;
+            font-weight: 600;
+            color: rgb(100, 94, 94);
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+
+            &:before {
+                content: '';
+                position:absolute;
+                top:0px;
+                left: -1px;
+                height: 100%;
+                width: 100%;
+                background-color: rgb(92, 152, 167);
+                transform: rotate(-90deg);
+                transform-origin: bottom left;
+                transition: all 0.4s;
+                z-index: -1;
+            }
+            &:after {
+                content: '';
+                position:absolute;
+                top:0;
+                left: 1px;
+                height: 100%;
+                width: 100%;
+                background-color: rgb(224, 101, 224);
+                transform: rotate(90deg);
+                transform-origin: bottom right;
+                transition: transform 0.4s;
+                z-index: -1;
+                mix-blend-mode: multiply;
+            }
+            
+            &:hover {
+                color: white
+            }
+            &:hover:before{
+                transform: rotate(0deg); 
+            }
+            &:hover:after{
+                transform: rotate(0deg)
+            }
+
+        }
+
+        .playerNum-pointer{
+            position: absolute;
+            left:-20px;
+            font-size: 27px;
+            transition: all 0.3s;
+
+            &:hover {
+                animation: shake 4s infinite ease forwards
+            }
+        }
     }
+}
+
+@keyframes shake {
+    0% {
+        transform-origin: bottom;
+        transform:rotate(0deg)
+    }
+    5%{
+        transform:rotate(-20deg)
+    }
+    10%{
+        transform:rotate(20deg)
+    }
+    15%{
+        transform:rotate(0deg)
+    }
+    100%{
+        transform:rotate(0deg)
+    }
+    
 }

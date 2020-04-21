@@ -5,23 +5,25 @@ import { setPlayerNum } from '../../context/action';
 
 import { Link } from 'react-router-dom';
 
+import AppHeader from '../../components/app-header/app-header.component';
+
 import './front-page.styles.scss';
 
 
 // FrontPage that sets up number of players for the game and Link to the Game Page;
 const FrontPage = () => {
-    const { dispatch } = useContext(store);
-
-
-    //Game object to setup the game;
+    const { state, dispatch } = useContext(store);
 
     return (
         <div className="start-menu">
-            <header>to do Game Header component</header>
-            <Link to="/game" className="menu-option">Start Game</Link>
-            <button onClick={() => dispatch(setPlayerNum(2))} className="menu-option">Two Player</button>
-            <button onClick={() => dispatch(setPlayerNum(3))} className="menu-option">Three Player</button>
-            <Link to="/setting" className="menu-option">Settings</Link>
+            <AppHeader />
+            <div className='option-container'>
+                <Link to="/game" className="menu-option">New Game</Link>
+                <div onClick={() => dispatch(setPlayerNum(2))} className="menu-option">Two Players</div>
+                <div onClick={() => dispatch(setPlayerNum(3))} className="menu-option">Three Players</div>
+                <Link to="/setting" className="menu-option">Settings</Link>
+                <span className='playerNum-pointer' style={{top:`${state.playerNum===2?'60px':'100px'}`}} role='img' aria-label='selected'>👍</span>
+            </div>
         </div>
     )
 }

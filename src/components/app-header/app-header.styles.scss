@@ -1,0 +1,181 @@
+.header-container {
+    display: flex;
+    width: 550px;
+    justify-content: space-between;
+    position: relative;
+
+    .header-title{
+        font-size: 55px;
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-weight: 800;
+        position: relative;
+        color: gray;
+        opacity: 0;
+    }
+    .header-title:nth-child(1){
+        animation:slide-from-left 1s 0.1s ease 1 forwards 
+    }
+    .header-title:nth-child(1)::before{
+        content: 'super';
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        color: red;
+        animation: color-pulse 10s 1.6s linear infinite forwards
+    }
+    .header-title:nth-child(2){
+        animation:slide-from-top 1s 0.8s ease 1 forwards 
+    }
+    .header-title:nth-child(2)::before{
+        content: 'emoji';
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        color: red;
+        animation: color-pulse 10s 1.9s linear infinite forwards
+    }
+    .header-title:nth-child(3){
+        animation:slide-from-right 1s 1.5s ease 1 forwards 
+    }
+    .header-title:nth-child(3)::before{
+        content: 'party';
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        color: red;
+        animation: color-pulse 10s 2.1s linear infinite forwards
+    }
+}
+
+.header-container::before{
+    content:'🧐';
+    position: absolute;
+    font-size: 32px;
+    top:0;
+    left:0;
+    opacity: 0;
+    width: fit-content;
+    transform:translate(-100%, -100%);
+    transform-origin: 50% 55%;
+    animation-name: rolling, dance;
+    animation-duration: 4s, 4s;
+    animation-delay: 1.5s, 6.4s;
+    animation-timing-function: ease, ease;
+    animation-iteration-count: 1, infinite;
+    animation-fill-mode: forwards, forwards;
+}
+
+
+@keyframes slide-from-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-150%)
+    };
+    60% {
+        opacity: 1;
+        transform: translateX(20%)
+    };
+    100% {
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
+
+@keyframes slide-from-right {
+    0% {
+        opacity: 0;
+        transform: translateX(150%)
+    };
+    60% {
+        opacity: 1;
+        transform: translateX(-20%)
+    };
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes slide-from-top {
+    0% {
+        opacity: 0;
+        transform: translateY(-150%)
+    };
+    60% {
+        opacity: 1;
+        transform: translateY(20%)
+    };
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+@keyframes color-pulse {
+    0% {
+        color: rgb(255, 0, 0);
+    }
+    12% {
+        color: rgb(255, 145, 0)
+    }
+    24% {
+        color: rgb(255, 251, 0)
+    }
+    36% {
+        color: rgb(51, 255, 0)
+    }
+    48% {
+        color: rgb(0, 255, 242)
+    }
+    61% {
+        color: rgb(0, 68, 255)
+    }
+    74% {
+        color: rgb(140, 0, 255)
+    }
+    88% {
+        color: #ff009d;
+    }
+    100%{
+        color: rgb(255, 0, 0);
+    }
+}
+
+@keyframes rolling {
+    0% {
+        opacity: 0;
+        transform: translate(-100%, -100%) rotate(0deg)
+    }
+    10%{
+        opacity: 0;
+    }
+    100% {
+        opacity:1;
+        transform: translate(740%, -100%) rotate(720deg)
+    }
+}
+
+@keyframes dance {
+    0% {
+        transform-origin: bottom;
+        transform:translate(740%, -100%) rotate(0deg) 
+    }
+    5% {
+        transform:translate(740%, -100%) rotate(20deg) 
+    }
+    10% {
+        transform:translate(740%, -100%) rotate(-20deg) 
+    }
+    15% {
+        transform:translate(740%, -100%) rotate(0deg) 
+    }
+    100% {
+        transform:translate(740%, -100%) rotate(0deg) 
+    }
+}

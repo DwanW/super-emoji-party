@@ -5,3 +5,10 @@
     font-family: 'Dosis', sans-serif;
     font-size: 18px;
 }
+
+body {
+    background: rgb(160, 228, 255);
+    z-index: -1;
+    perspective: 1000px;
+}
+
