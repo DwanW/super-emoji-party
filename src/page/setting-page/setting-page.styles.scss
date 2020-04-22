@@ -1,17 +1,41 @@
 .setting-page{
     display: flex;
-    width: 80vw;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
     left: 0;
     right: 0;
-    align-items: center;
-    justify-content: space-around;
-    margin: 20% auto;
     position:absolute;
-}
-.setting-nav {
-    width: 30vw;
-    cursor: pointer;
+
+    .setting-nav {
+        width: 350px;
+        cursor: pointer;
+        padding-right: 60px;
+
+        .nav-options {
+            display: block;
+            padding: 3px 10px;
+            text-decoration: none;
+            color: rgb(48, 48, 48);
+            font-size: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: right;
+        
+            &:hover {
+                color: white;
+                background-color: rgba(0, 0, 0, 0.63);
+            }
+        }
+
+        .selected-option {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.63);
+        }
+    }
 }
 .setting-display {
-    width: 50vw;
+    width: 500px;
+    padding: 10px 20px;
 }

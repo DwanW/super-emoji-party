@@ -1,12 +1,33 @@
 .option-container {
-    padding: 20px;
-    margin: 20px;
     display: flex;
+    padding: 10px 0;
 
+    .label {
+        font-size: 22px;
+        color:rgb(253, 253, 253);
+        background-color: gray;
+        padding: 0 3px;
+    }
     .player-name-tab {
         display:flex;
         width: 120px;
         justify-content: space-between;
+
+        .current-player{
+            font-size: 22px;
+            width: 200px;
+            text-align: center;
+        }
+
+        button{
+            background-color:rgb(160, 228, 255);
+            outline: none;
+            font-size: 22px;
+
+            &:hover{
+               color: purple;
+            }
+        }
     }
     
     .player-icon-tab {
@@ -19,6 +40,16 @@
             width: fit-content;
             font-size: calc(15px + 1vmin);
             transform: translate(45px, 0%);
+        }
+
+        button{
+            background-color:rgb(160, 228, 255);
+            outline: none;
+            font-size: 22px;
+
+            &:hover{
+               color: purple;
+            }
         }
     }
 }

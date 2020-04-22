@@ -65,7 +65,7 @@ const BoardSetting = () => {
                 <div className='label'>Player Icon</div>
                 <div className="player-name-tab">
                     <button className='previous' onClick={previousPlayer}>&#10094;</button>
-                    <span>player {currentIdx}</span>
+                    <span className='current-player'>player {currentIdx}</span>
                     <button className='next' onClick={nextPlayer}>&#10095;</button>
                 </div>
                 <div className="player-icon-tab">

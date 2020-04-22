@@ -22,7 +22,7 @@ const FrontPage = () => {
                 <div onClick={() => dispatch(setPlayerNum(2))} className="menu-option">Two Players</div>
                 <div onClick={() => dispatch(setPlayerNum(3))} className="menu-option">Three Players</div>
                 <Link to="/setting" className="menu-option">Settings</Link>
-                <span className='playerNum-pointer' style={{top:`${state.playerNum===2?'60px':'100px'}`}} role='img' aria-label='selected'>👍</span>
+                <span className='playerNum-pointer' style={{top:`${state.playerNum===2?'55px':'105px'}`}} role='img' aria-label='selected'>👍</span>
             </div>
         </div>
     )
