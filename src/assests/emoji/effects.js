@@ -892,11 +892,11 @@ export const effects = {
     animals: {
         snake: {
             icon: '🐍',
-            description: 'A wild burger has Appeared',
+            description: 'A wild snake has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -911,8 +911,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -927,8 +927,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -946,11 +946,11 @@ export const effects = {
         },
         crocodile: {
             icon: '🐊',
-            description: 'A wild burger has Appeared',
+            description: 'A crocodile has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -965,8 +965,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -981,8 +981,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1000,11 +1000,11 @@ export const effects = {
         },
         rhinoceros: {
             icon: '🦏',
-            description: 'A wild burger has Appeared',
+            description: 'A rhinoceros has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1019,8 +1019,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1035,8 +1035,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1054,11 +1054,11 @@ export const effects = {
         },
         trex: {
             icon: '🦖',
-            description: 'A wild burger has Appeared',
+            description: 'A T-rex has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1073,8 +1073,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1089,8 +1089,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1104,15 +1104,15 @@ export const effects = {
                         }
                     ],
                 }
-            ]
+            ] 
         },
         shunk: {
             icon: '🦨',
-            description: 'A wild burger has Appeared',
+            description: 'A shunk has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1127,8 +1127,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1143,8 +1143,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1162,11 +1162,11 @@ export const effects = {
         },
         scorpion: {
             icon: '🦂',
-            description: 'A wild burger has Appeared',
+            description: 'A scorpion has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1181,8 +1181,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1197,8 +1197,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1216,11 +1216,11 @@ export const effects = {
         },
         tiger: {
             icon: '🐅',
-            description: 'A wild burger has Appeared',
+            description: 'A tiger has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1235,8 +1235,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1251,8 +1251,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1270,11 +1270,11 @@ export const effects = {
         },
         dog: {
             icon: '🐕',
-            description: 'A wild burger has Appeared',
+            description: 'A wild dog has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1289,8 +1289,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1305,8 +1305,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1324,11 +1324,11 @@ export const effects = {
         },
         monkey: {
             icon: '🐒',
-            description: 'A wild burger has Appeared',
+            description: 'A monkey has Appeared',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Battle',
+                    text: 'take risks and get loot',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1343,8 +1343,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Run away',
+                    text: "stay alive and live on",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1359,8 +1359,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Be friend',
+                    text: 'try to act friendly',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1380,11 +1380,11 @@ export const effects = {
     weather: {
         sunny: {
             icon: '🌞',
-            description: 'A wild burger has Appeared',
+            description: 'The Sun shines upon you',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Receive radiant bless',
+                    text: '?',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1399,8 +1399,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Receive empowering bless',
+                    text: "?",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1415,8 +1415,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Receive holy bless',
+                    text: '?',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1434,11 +1434,11 @@ export const effects = {
         },
         rainbow: {
             icon: '🌈',
-            description: 'A wild burger has Appeared',
+            description: 'you found a rare rainbow',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Focused Mind',
+                    text: '?',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1453,8 +1453,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Couragous',
+                    text: "?",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1469,8 +1469,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Generous',
+                    text: '?',
                     outCome: [
                         {
                             type: 'MOVE',
@@ -1491,11 +1491,11 @@ export const effects = {
         taxi:
         {
             icon: '🚕',
-            description: 'A wild burger has Appeared',
+            description: 'taxi approches right next to you, the driver looks a little shady',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Hire the taxi',
+                    text: 'the taxi is able to take you anywhere you need to go',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1510,8 +1510,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Walk Away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1522,22 +1522,6 @@ export const effects = {
                             type: 'MODIFY_SPIRIT',
                             baseValue: -10,
                             resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
                         }
                     ],
                 }
@@ -1546,11 +1530,11 @@ export const effects = {
         bus: 
         {
             icon: '🚌',
-            description: 'A wild burger has Appeared',
+            description: 'You arrive at a bus stop, and the bus is about to depart',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'take the bus',
+                    text: 'it is a little crowded',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1565,8 +1549,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1577,22 +1561,6 @@ export const effects = {
                             type: 'MODIFY_SPIRIT',
                             baseValue: -10,
                             resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
                         }
                     ],
                 }
@@ -1600,11 +1568,11 @@ export const effects = {
         },
         train: {
             icon: '🚆',
-            description: 'A wild burger has Appeared',
+            description: 'You have arrived at the train station, the train is about to depart',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Take the train',
+                    text: 'a relatively reliable transportation methods that will take you to certain spot of the city',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1619,8 +1587,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Walk Away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1631,22 +1599,6 @@ export const effects = {
                             type: 'MODIFY_SPIRIT',
                             baseValue: -10,
                             resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
                         }
                     ],
                 }
@@ -1654,11 +1606,11 @@ export const effects = {
         },
         airplane: {
             icon: '🛬',
-            description: 'A wild burger has Appeared',
+            description: 'You have arrived at an private airport, the pilot is happy to take you anywhere',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Take the plane',
+                    text: 'taking the plane allows you to travel across great distance',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1673,8 +1625,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1685,22 +1637,6 @@ export const effects = {
                             type: 'MODIFY_SPIRIT',
                             baseValue: -10,
                             resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
                         }
                     ],
                 }
@@ -1708,11 +1644,11 @@ export const effects = {
         },
         rocket: {
             icon: '🚀',
-            description: 'A wild burger has Appeared',
+            description: 'A rocket is about to launch',
             choices: [
                 {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    title: 'Hold on to it',
+                    text: 'I have no idea where this will take me...',
                     outCome: [
                         {
                             type: 'MODIFY_HEALTH',
@@ -1727,8 +1663,8 @@ export const effects = {
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
+                    title: 'Walk Away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MODIFY_SPIRIT',
@@ -1741,78 +1677,8 @@ export const effects = {
                             resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
                         }
                     ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
-                        }
-                    ],
                 }
             ]
-        },
-        parachute: {
-            icon: '🪂',
-            description: 'A wild burger has Appeared',
-            choices: [
-                {
-                    title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
-                    outCome: [
-                        {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
-                        },
-                        {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
-                        }
-                    ],
-                }
-            ]
-        },
-    }
+        }
+    } 
 }
