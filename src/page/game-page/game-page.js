@@ -12,7 +12,18 @@ import './game-page.styles.scss';
 const GamePage = () => {
   const { state } = useContext(store);
 
-  const playerArray = Array(state.playerNum).fill('').map((e, idx) => ({ playerName: state.playerIcon[idx], health: 11, spirit: 30, inventory: {}, position: 0 }));
+  const playerArray = Array(state.playerNum).fill('').map((e, idx) => (
+    {
+      playerName: state.playerIcon[idx],
+      health: 30,
+      spirit: 30,
+      inventory: [],
+      healthMod: 1,
+      spiritMod: 1,
+      maxDieRollMod: 0,
+      position: 0
+    }
+  ));
 
   // initialize game state, define game interaction(moves), and define victory condition here.
   const emojiParty = {
@@ -30,18 +41,34 @@ const GamePage = () => {
     moves: {
       rollDie: (G, ctx) => {
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
-        let rollNum = Math.floor(10 / (1 + Math.pow(Math.E, 0.027425 * (50 - currentPlayer.spirit))));
+        let rollNum = Math.floor(10 / (1 + Math.pow(Math.E, 0.027425 * (50 - currentPlayer.spirit)))) + Math.floor(currentPlayer.maxDieRollMod);
         G.dieRoll = ctx.random.Die(rollNum);
         G.numOfRoll--;
       },
       traverse: (G, ctx, isForward) => {
-        // console.log(isForward);
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
         isForward ? currentPlayer.position++ : currentPlayer.position--;
       },
       relocate: (G, ctx, idx) => {
         let currentPlayer = G.players[Number(ctx.currentPlayer)];
         currentPlayer.position = idx;
+      },
+      addItem: (G, ctx, item) => {
+        let currentPlayer = G.players[Number(ctx.currentPlayer)];
+        let newInventory = [...currentPlayer.inventory]
+        newInventory.push(item)
+        currentPlayer.inventory = newInventory;
+        switch (item.type) {
+          case 'STATS_MOD':
+            currentPlayer.healthMod = currentPlayer.healthMod + item.value[0];
+            currentPlayer.spiritMod = currentPlayer.spiritMod + item.value[1];
+            break;
+          case 'DICE_MOD':
+            currentPlayer.maxDieRollMod = currentPlayer.maxDieRollMod + item.value;
+            break;
+          default:
+            break;
+        }
       },
       setChoice: (G, ctx, idx, choiceObj) => {
         let currentPlayerHealth = G.players[Number(ctx.currentPlayer)].health;
@@ -73,7 +100,7 @@ const GamePage = () => {
       setStats: (G, ctx, value) => {
         let currentPlayerHealth = G.players[Number(ctx.currentPlayer)].health;
         let currentPlayerSpirit = G.players[Number(ctx.currentPlayer)].spirit;
-        if (value[0]){
+        if (value[0]) {
           let resultHealth = currentPlayerHealth + value[0];
           if (resultHealth > 0) {
             G.players[Number(ctx.currentPlayer)].health = resultHealth;
@@ -81,7 +108,7 @@ const GamePage = () => {
             G.players[Number(ctx.currentPlayer)].health = 0;
           }
         }
-        if (value[1]){
+        if (value[1]) {
           let resultSpirit = currentPlayerSpirit + value[1];
           if (resultSpirit > 0) {
             G.players[Number(ctx.currentPlayer)].spirit = resultSpirit;
@@ -105,7 +132,6 @@ const GamePage = () => {
     },
 
     endIf: (G, ctx) => {
-      // change 10 later
       let currentPlayer = G.players[Number(ctx.currentPlayer)];
       if (currentPlayer.position >= state.mapSize - 1) {
         return { winner: currentPlayer.playerName };
@@ -117,7 +143,7 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug: false
+    debug: true
   };
 
   const Game = Client(gameObj);

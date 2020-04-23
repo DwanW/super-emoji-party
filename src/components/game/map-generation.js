@@ -2,11 +2,11 @@ import { effects } from '../../assests/emoji/effects';
 
 
 // define effect generation probability
-const buildingProb = 0.2;
-const foodProb = 0.2;
-const animalProb = 0.1;
-const weatherProb = 0.2;
-const transportProb = 0.2;
+const buildingProb = 0.1;
+const foodProb = 0.15;
+const animalProb = 0.15;
+const weatherProb = 0.03;
+const transportProb = 0.15;
 
 // sum of weights must be <= 1;
 const weights = [buildingProb, foodProb, animalProb, weatherProb, transportProb];
@@ -42,7 +42,7 @@ const getRandomEffect = () => {
 
 //[1,2,3,4] means moving direction [up, right, down ,left];
 
-//boarder 1024 x 673  //width:17, height: 10;
+//board size 1024 x 673  //width:17, height: 10;
 
 const maxWidth = 18;
 const maxHeight = 11;
@@ -164,7 +164,6 @@ const createMap = cellNum => {
                 return;
         }
     }
-    console.log(board);
     return board;
 };
 

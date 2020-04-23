@@ -9,6 +9,7 @@ import Banner from '../banner/banner.component';
 import EffectCard from '../effect-card/effect-card.component';
 import Modal from '../custom-modal/custom-modal.component';
 import { effects } from '../../assests/emoji/effects';
+import { items } from '../../assests/emoji/items';
 
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
@@ -92,9 +93,14 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
   //calculate effect value
   const getValue = (baseValue) => {
-    // can be modified 
-    // G.currentEffectType
-    moves.setValue(baseValue);
+    if (G.currentEffectType === 'MODIFY_STATS') {
+      let newHealth = (baseValue[0] < 0)? baseValue[0] * currentplayerObj.healthMod : baseValue[0];
+      let newSpirit = (baseValue[1] < 0)? baseValue[1] * currentplayerObj.spiritMod : baseValue[1];
+      let newValue = [newHealth, newSpirit];
+      moves.setValue(newValue);
+    } else {
+      moves.setValue(baseValue);
+    }
   }
 
   //hide effect modal and open result modal
@@ -116,6 +122,9 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       case 'MOVE':
         travel(G.currentEffectValue);
         break;
+      case 'ADD_ITEM':
+        moves.addItem(items[G.currentEffectValue]);
+        break;
       default:
         console.log('no action');
     }
@@ -126,15 +135,21 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const displayResultText = () => {
     switch (G.currentEffectType) {
       case 'MODIFY_STATS':
-        if(G.currentEffectValue[0] && G.currentEffectValue[1] ){
-          return `Your Health is ${(G.outComeIdx === 0)? 'recovered':'decreased'} by ${G.currentEffectValue[0]} and Your Spirit is ${(G.outComeIdx === 0)? 'replenished':'decreased'} by ${G.currentEffectValue[1]}`;
-        } else if (G.currentEffectValue[0]){
-          return `Your Health is ${(G.outComeIdx === 0)? 'recovered':'decreased'} by ${G.currentEffectValue[0]}`;
+        if (G.currentEffectValue[0] && G.currentEffectValue[1]) {
+          return `Your Health is ${(G.currentEffectValue[0] > 0) ? 'recovered' : 'decreased'} by ${Math.abs(G.currentEffectValue[0])} and Your Spirit is ${(G.currentEffectValue[0] > 0) ? 'replenished' : 'decreased'} by ${Math.abs(G.currentEffectValue[1])}`;
+        } else if (G.currentEffectValue[0]) {
+          return `Your Health is ${(G.currentEffectValue[0] > 0) ? 'recovered' : 'decreased'} by ${Math.abs(G.currentEffectValue[0])}`;
         } else {
-          return `Your Spirit is ${(G.outComeIdx === 0)? 'replenished':'decreased'} by ${G.currentEffectValue[1]}`;
+          return `Your Spirit is ${(G.currentEffectValue[1] > 0) ? 'replenished' : 'decreased'} by ${Math.abs(G.currentEffectValue[1])}`;
         }
       case 'MOVE':
-        return `Move ${(G.outComeIdx === 0)? 'forward':'backward'} by ${G.currentEffectValue}`;
+        if (G.currentEffectValue) {
+          return `Move ${(G.currentEffectValue > 0) ? 'forward' : 'backward'} by ${Math.abs(G.currentEffectValue)}`;
+        } else {
+          return 'Nothing happened';
+        };
+      case 'ADD_ITEM':
+        return `${items[G.currentEffectValue].icon} ${G.currentEffectValue} has been added to your inventory`;
       default:
         console.log('not a coded action description');
     }

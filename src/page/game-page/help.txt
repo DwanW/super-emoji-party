@@ -6,8 +6,6 @@ inventory: each player has three inventory slots, each can hold a unique item:
     item type:
         1. increase resistance against health reduction;
         2. increase resistance against spirit reduction;
-        3. increase max health;
-        4. increase mas spirit;
         5. health recovery bonus each turn;
         6. spirit recovery bonus each turn;
         7. increase base max roll;
@@ -32,3 +30,17 @@ negative encounter chance = 0.1 (-20%) to 0.5 (+20%);
 
  above >=30   bonus chance = 0.1693 ln( health + 1) - 0.5814 (logrithmic)
  below 30   bonus chance = 0.006777 health - 0.2    (linear)
+
+ item list:
+ shield         abacus
+ chocolate-bar  hot-pepper
+ crystal-ball   bomb
+ top-hat
+ hammer        brick
+ toolbox        gear
+ candle
+ ball
+ direct-hit
+ hiking-boots
+ medal
+ dagger

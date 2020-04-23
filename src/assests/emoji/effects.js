@@ -26,13 +26,13 @@ export const effects = {
                     outCome: [
                         {
                             type: 'MODIFY_STATS',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            baseValue: [0,20],
+                            resultDescription: 'You found a great show, every characters likable and story is great.'
                         },
                         {
                             type: 'MODIFY_STATS',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            baseValue: [0,-10],
+                            resultDescription: 'You found a terrible show, characters are not interesting to you at all.'
                         }
                     ],
                 },
@@ -43,12 +43,12 @@ export const effects = {
                         {
                             type: 'MOVE',
                             baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            resultDescription: 'knowledge empowers you.'
                         },
                         {
                             type: 'MOVE',
                             baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            resultDescription: 'the book content has absorbed you.'
                         }
                     ],
                 }
@@ -63,14 +63,14 @@ export const effects = {
                     text: 'for the well being of others, this is may not be bad at all',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-5, 30],
+                            resultDescription: 'besides the initial needle pain, you are now feeling great.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10, -5],
+                            resultDescription: 'You are losing more blood than you expect.'
                         }
                     ],
                 },
@@ -79,14 +79,14 @@ export const effects = {
                     text: "have doctors examine your health condition",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,5],
+                            resultDescription: 'after hearing that you are as health as you can be, your spirit is lifted.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'Your doctor states that you have health concerns...'
                         }
                     ],
                 },
@@ -95,14 +95,14 @@ export const effects = {
                     text: 'the facility is well equipped with medical equipments, maybe you can find a thing or two',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'shield',
+                            resultDescription: 'you found a health shield.'
                         },
                         {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'abacus',
+                            resultDescription: 'you found an abacus.'
                         }
                     ],
                 }
@@ -117,14 +117,14 @@ export const effects = {
                     text: 'sanctuary for tranquil pleasure and peacefulness, claims to revitalize',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,15],
+                            resultDescription: 'your body and mind become relaxed.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,-10],
+                            resultDescription: 'your body become relaxed, however you mind become tense due to remember past events.'
                         }
                     ],
                 },
@@ -133,14 +133,14 @@ export const effects = {
                     text: "one of the features in this hotel, this small sized pool look a little deep",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [10,-5],
+                            resultDescription: 'you become slightly tired after swimming, however you become more healthy.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,-5],
+                            resultDescription: 'swimming for a long time worn you down, you feel dizzy'
                         }
                     ],
                 },
@@ -150,13 +150,13 @@ export const effects = {
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: ''
                         },
                         {
                             type: 'MOVE',
                             baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            resultDescription: 'in order to go past it, you had to take a detour'
                         }
                     ],
                 }
@@ -171,14 +171,14 @@ export const effects = {
                     text: 'You see some of your favorite brand: cheese-it, cool doritos, fruit gutters, chip ...',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'chocolate-bar',
+                            resultDescription: 'you get a chocolatebar.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'hot-pepper',
+                            resultDescription: 'you got a hot pepper.'
                         }
                     ],
                 },
@@ -187,14 +187,14 @@ export const effects = {
                     text: "life is a gamble, trust your heart and follow your instinct",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'well, not everyday is a lucky day.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0, 20],
+                            resultDescription: 'You won a super rare prize, and it lifts your spirit greatly '
                         }
                     ],
                 },
@@ -203,14 +203,14 @@ export const effects = {
                     text: 'strange manuscripts, dolls and antiquities, covered by a thick layer of dust',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'crystal-ball',
+                            resultDescription: 'you got a crystal-ball'
                         },
                         {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'bomb',
+                            resultDescription: 'you got a bomb'
                         }
                     ],
                 }
@@ -225,14 +225,14 @@ export const effects = {
                     text: 'spent the night in the small tent',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [20,0],
+                            resultDescription: 'resting recovered your strength.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-5,-10],
+                            resultDescription: 'spending night in the wilderness make it harder to fall asleep.'
                         }
                     ],
                 },
@@ -241,14 +241,14 @@ export const effects = {
                     text: "need to stay vigilant to be in the wilderness",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'top-hat',
+                            resultDescription: 'you found a top-hat near the tent.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,-10],
+                            resultDescription: 'staying up makes you tired.'
                         }
                     ],
                 },
@@ -258,13 +258,13 @@ export const effects = {
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 3,
+                            resultDescription: 'tonight is peaful and safe.'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 1,
+                            resultDescription: 'preditors howl during the night, you carefully tranversed through the land.'
                         }
                     ],
                 }
@@ -279,14 +279,14 @@ export const effects = {
                     text: 'rumor says there are very useful machineries you could carry for personal use',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'ADD_ITEM',
+                            baseValue: "hammer",
+                            resultDescription: 'you found a hammer.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'brick',
+                            resultDescription: 'you found a brick.'
                         }
                     ],
                 },
@@ -295,14 +295,14 @@ export const effects = {
                     text: "dismantle some of the things in the factory and make helpful toolbox for your journey",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'toolbox',
+                            resultDescription: 'you compiled a toolbox.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'gear',
+                            resultDescription: 'this little gear is the only left after the dismantle'
                         }
                     ],
                 }
@@ -317,30 +317,30 @@ export const effects = {
                     text: 'to be granted the power to save oneself',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,5],
+                            resultDescription: 'inner sins are washed away.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-10],
+                            resultDescription: 'this whole process makes you quite uncomfortable.'
                         }
                     ],
                 },
                 {
                     title: 'Offer Prayer',
-                    text: "offer something valuable to the gods to receive the blessings",
+                    text: "offer your soul to the gods to receive the blessings",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,-10],
+                            resultDescription: 'unfortunately that did not work.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'candle',
+                            resultDescription: 'you received candle of protection.'
                         }
                     ],
                 }
@@ -354,49 +354,33 @@ export const effects = {
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [20,0],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,0],
+                            resultDescription: 'the toppings are awful.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the pizza'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the pizza'
                         }
                     ],
                 }
@@ -408,49 +392,33 @@ export const effects = {
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
                             type: 'MODIFY_STATS',
                             baseValue: [20,0],
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            resultDescription: 'it is delicious'
                         },
                         {
                             type: 'MODIFY_STATS',
-                            baseValue: [-10,0],
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            baseValue: [5,-5],
+                            resultDescription: 'it is aight, not great.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_STATS',
-                            baseValue: [0,20],
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_STATS',
-                            baseValue: [0,-10],
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the burger'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the burger'
                         }
                     ],
                 }
@@ -458,53 +426,37 @@ export const effects = {
         },
         hotdog: {
             icon: '🌭',
-            description: 'A wild burger has Appeared',
+            description: 'A wild hotdog has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [20,0],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,0],
+                            resultDescription: 'it is very salty to enjoy'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the hotdog'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the hotdog'
                         }
                     ],
                 }
@@ -512,53 +464,37 @@ export const effects = {
         },
         bacon: {
             icon: '🥓',
-            description: 'A wild burger has Appeared',
+            description: 'A wild bacon has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [10,10],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,10],
+                            resultDescription: 'it is great, however there is way too much fat on it.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the bacon'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the bacon'
                         }
                     ],
                 }
@@ -566,53 +502,37 @@ export const effects = {
         },
         chickenleg: {
             icon: '🍗',
-            description: 'A wild burger has Appeared',
+            description: 'A wild chicken leg has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,10],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,-10],
+                            resultDescription: 'there is no flavor to the chicken, and it taste to plain.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the chicken leg'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the chicken leg'
                         }
                     ],
                 }
@@ -620,53 +540,37 @@ export const effects = {
         },
         pancake: {
             icon: '🥞',
-            description: 'A wild burger has Appeared',
+            description: 'A wild pancake has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [7,5],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-5,-7],
+                            resultDescription: 'the syrup are too sweet to your taste.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the pancake'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the pancake'
                         }
                     ],
                 }
@@ -674,53 +578,37 @@ export const effects = {
         },
         doughnut: {
             icon: '🍩',
-            description: 'A wild burger has Appeared',
+            description: 'A wild doughnut has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [15,5],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,-10],
+                            resultDescription: 'it has expired.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the doughnut'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the doughnut'
                         }
                     ],
                 }
@@ -728,53 +616,37 @@ export const effects = {
         },
         lolipop: {
             icon: '🍭',
-            description: 'A wild burger has Appeared',
+            description: 'A wild lolipop has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,20],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,5],
+                            resultDescription: 'your teeth deteoriate after you eat it.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the lolipop'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the lolipop'
                         }
                     ],
                 }
@@ -782,53 +654,37 @@ export const effects = {
         },
         shortcake: {
             icon: '🍰',
-            description: 'A wild burger has Appeared',
+            description: 'A wild cake has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [10,15],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [10,-8],
+                            resultDescription: 'cake is great however you wanted more.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the cake'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the cake'
                         }
                     ],
                 }
@@ -836,53 +692,37 @@ export const effects = {
         },
         kiwi: {
             icon: '🥝',
-            description: 'A wild burger has Appeared',
+            description: 'A wild kiwi has Appeared',
             choices: [
                 {
                     title: 'Eat it',
-                    text: 'the look of tasty cheese and grilled meat makes you want to eat it in one bite',
+                    text: '',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,8],
+                            resultDescription: 'it is delicious'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,-8],
+                            resultDescription: 'your togue becomes numb after you eat it.'
                         }
                     ],
                 },
                 {
-                    title: 'Inspect it',
-                    text: "the suspicious looking burger makes you wonder what's inside",
-                    outCome: [
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
-                        },
-                        {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Step on it',
-                    text: 'I must destroy this sorcery',
+                    title: 'Walk away',
+                    text: "",
                     outCome: [
                         {
                             type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the kiwi'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: 0,
+                            resultDescription: 'You walked away from the kiwi'
                         }
                     ],
                 }
@@ -899,14 +739,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [10,0],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-30,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -915,14 +755,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,-10],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -931,14 +771,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,5],
+                            resultDescription: 'The snake is not threatened and calmed down'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -3,
+                            resultDescription: 'The snake agressively charge towards you, you had to run away.'
                         }
                     ],
                 }
@@ -953,14 +793,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [10,0],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-40,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -969,14 +809,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-10],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-15,-10],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -985,14 +825,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,7],
+                            resultDescription: 'The crocodile walks away'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -4,
+                            resultDescription: 'The crocodile agressively charge towards you, you had to run away.'
                         }
                     ],
                 }
@@ -1007,14 +847,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [15,0],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-45,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -1023,14 +863,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-8],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-18,-10],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -1039,14 +879,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,15],
+                            resultDescription: 'The rhino wants to be your friend'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -4,
+                            resultDescription: 'The rhino chases, you had to run away.'
                         }
                     ],
                 }
@@ -1061,14 +901,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [20,20],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-80,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -1077,14 +917,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-15],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-30,-25],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -1093,18 +933,18 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-10],
+                            resultDescription: 'The t-rex becomes uninterested in you'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -10,
+                            resultDescription: 'The t-rex agressively charge towards you, you had to run for your life.'
                         }
                     ],
                 }
-            ] 
+            ]
         },
         shunk: {
             icon: '🦨',
@@ -1115,14 +955,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,15],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,-15],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -1131,14 +971,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-5,-10],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -1147,14 +987,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-8],
+                            resultDescription: 'the shunk is not interested'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -3,
+                            resultDescription: 'The shunk agressively charge towards you, you had to run away.'
                         }
                     ],
                 }
@@ -1169,14 +1009,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [10,8],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-60,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -1185,14 +1025,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'you managed to ran away.'
                         }
                     ],
                 },
@@ -1201,14 +1041,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-30,-30],
+                            resultDescription: 'only good friend for scorpion is a dead friend'
                         },
                         {
                             type: 'MOVE',
                             baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            resultDescription: 'The scorpion agressively charge towards you, you had to move away.'
                         }
                     ],
                 }
@@ -1223,14 +1063,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [30,20],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-30,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -1239,14 +1079,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-10],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-25,-10],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -1255,14 +1095,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,5],
+                            resultDescription: 'The tiger is not interested in you anymore'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -9,
+                            resultDescription: 'The tiger agressively charge towards you, you had to run away.'
                         }
                     ],
                 }
@@ -1277,14 +1117,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [15,0],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-15,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -1293,14 +1133,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-12,-14],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -1309,14 +1149,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'ball',
+                            resultDescription: 'you found a ball of friendship'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -5,
+                            resultDescription: 'The dog agressively charge towards you, you had to run away.'
                         }
                     ],
                 }
@@ -1331,14 +1171,14 @@ export const effects = {
                     text: 'take risks and get loot',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [5,0],
+                            resultDescription: 'you become stronger.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-18,0],
+                            resultDescription: 'You got injured.'
                         }
                     ],
                 },
@@ -1347,14 +1187,14 @@ export const effects = {
                     text: "stay alive and live on",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,-5],
+                            resultDescription: 'you successfully ran away.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [-10,-5],
+                            resultDescription: 'you managed to ran away, but you still got hurt'
                         }
                     ],
                 },
@@ -1363,14 +1203,14 @@ export const effects = {
                     text: 'try to act friendly',
                     outCome: [
                         {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,5],
+                            resultDescription: 'The monkey stare at you strangly but calmly'
                         },
                         {
                             type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            baseValue: -2,
+                            resultDescription: 'The monkey agressively charge towards you, you had to run away.'
                         }
                     ],
                 }
@@ -1387,14 +1227,14 @@ export const effects = {
                     text: '?',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [100,0],
+                            resultDescription: 'BLESS RECEIVED.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [50,15],
+                            resultDescription: 'BLESS RECEIVED.'
                         }
                     ],
                 },
@@ -1403,30 +1243,14 @@ export const effects = {
                     text: "?",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [0,100],
+                            resultDescription: 'BLESSING RECEIVED.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Receive holy bless',
-                    text: '?',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            type: 'MODIFY_STATS',
+                            baseValue: [25, 50],
+                            resultDescription: 'BLESSING RECEIVED.'
                         }
                     ],
                 }
@@ -1441,14 +1265,14 @@ export const effects = {
                     text: '?',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'direct-hit',
+                            resultDescription: 'You received a special item.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'hiking-boots',
+                            resultDescription: 'you received a special item.'
                         }
                     ],
                 },
@@ -1457,30 +1281,14 @@ export const effects = {
                     text: "?",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'medal',
+                            resultDescription: 'you recieved a special item'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
-                        }
-                    ],
-                },
-                {
-                    title: 'Generous',
-                    text: '?',
-                    outCome: [
-                        {
-                            type: 'MOVE',
-                            baseValue: 2,
-                            resultDescription: 'it vanished just before you set foot onto it, you suddenly feel a mysterious wind on your back.'
-                        },
-                        {
-                            type: 'MOVE',
-                            baseValue: -1,
-                            resultDescription: 'the burger suddenly stood up as you get close, and pushes you away.'
+                            type: 'ADD_ITEM',
+                            baseValue: 'dagger',
+                            resultDescription: 'you received a special item'
                         }
                     ],
                 }
@@ -1498,14 +1306,14 @@ export const effects = {
                     text: 'the taxi is able to take you anywhere you need to go',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MOVE',
+                            baseValue: 4,
+                            resultDescription: 'the taxi drives you a distance before dropping you off.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
+                            type: 'MOVE',
                             baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            resultDescription: 'driver is lost .'
                         }
                     ],
                 },
@@ -1514,14 +1322,14 @@ export const effects = {
                     text: "",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened'
                         }
                     ],
                 }
@@ -1533,34 +1341,34 @@ export const effects = {
             description: 'You arrive at a bus stop, and the bus is about to depart',
             choices: [
                 {
-                    title: 'take the bus',
-                    text: 'it is a little crowded',
+                    title: 'Take the bus',
+                    text: 'the bus is a little crowded',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MOVE',
+                            baseValue: 3,
+                            resultDescription: 'the bus arrived at your stop.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MOVE',
+                            baseValue: -3,
+                            resultDescription: 'passenger emergency.'
                         }
                     ],
                 },
                 {
-                    title: 'Walk away',
+                    title: 'Walk Away',
                     text: "",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened'
                         }
                     ],
                 }
@@ -1572,17 +1380,17 @@ export const effects = {
             choices: [
                 {
                     title: 'Take the train',
-                    text: 'a relatively reliable transportation methods that will take you to certain spot of the city',
+                    text: 'a relatively reliable methods to get around the city',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MOVE',
+                            baseValue: 6,
+                            resultDescription: 'the train arrived at your station.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MOVE',
+                            baseValue: -2,
+                            resultDescription: 'mechanical problem and unexpected delay .'
                         }
                     ],
                 },
@@ -1591,14 +1399,14 @@ export const effects = {
                     text: "",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened'
                         }
                     ],
                 }
@@ -1609,34 +1417,34 @@ export const effects = {
             description: 'You have arrived at an private airport, the pilot is happy to take you anywhere',
             choices: [
                 {
-                    title: 'Take the plane',
-                    text: 'taking the plane allows you to travel across great distance',
+                    title: 'take the plane',
+                    text: 'airplane can take you across great distances',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            type: 'MOVE',
+                            baseValue: 12,
+                            resultDescription: 'the plane safely landed.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MOVE',
+                            baseValue: 6,
+                            resultDescription: 'unexpected weather condition lead to an early landing .'
                         }
                     ],
                 },
                 {
-                    title: 'Walk away',
+                    title: 'Walk Away',
                     text: "",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened'
                         }
                     ],
                 }
@@ -1647,18 +1455,18 @@ export const effects = {
             description: 'A rocket is about to launch',
             choices: [
                 {
-                    title: 'Hold on to it',
-                    text: 'I have no idea where this will take me...',
+                    title: 'hold on to the rocket',
+                    text: 'I have no idea where it will take me',
                     outCome: [
                         {
-                            type: 'MODIFY_HEALTH',
+                            type: 'MOVE',
                             baseValue: 20,
-                            resultDescription: 'You took one big bite, the burger is more delicious than you would expect.'
+                            resultDescription: 'you are on the other side of the earth, maybe.'
                         },
                         {
-                            type: 'MODIFY_HEALTH',
-                            baseValue: -10,
-                            resultDescription: 'You took one big bite, it is the worse thing ever.'
+                            type: 'MOVE',
+                            baseValue: -20,
+                            resultDescription: 'well, rocket did take you somewhere.'
                         }
                     ],
                 },
@@ -1667,14 +1475,14 @@ export const effects = {
                     text: "",
                     outCome: [
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: 20,
-                            resultDescription: 'Upon inspection, you find that it is not as healthy as you think, and you are glad to walk away from it.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened.'
                         },
                         {
-                            type: 'MODIFY_SPIRIT',
-                            baseValue: -10,
-                            resultDescription: 'You took a closer look at the burger, the spoiled smell made you regret getting too close.'
+                            type: 'MOVE',
+                            baseValue: 0,
+                            resultDescription: 'Nothing happened'
                         }
                     ],
                 }

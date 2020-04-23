@@ -5,8 +5,8 @@ import { emojiIcon } from '../assests/emoji/player-icons';
 // Global App Initial State
 const initialState = {
   playerNum: 2,
-  mapSize: 10,
-  mapLayout: createMap(10),
+  mapSize: 40,
+  mapLayout: createMap(40),
   playerIcon: [emojiIcon[0], emojiIcon[1]],
   isLoading: false
 };
