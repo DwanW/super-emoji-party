@@ -15,7 +15,7 @@ const GamePage = () => {
   const playerArray = Array(state.playerNum).fill('').map((e, idx) => (
     {
       playerName: state.playerIcon[idx],
-      health: 30,
+      health: 1,
       spirit: 30,
       inventory: [],
       healthMod: 1,
@@ -143,7 +143,7 @@ const GamePage = () => {
     game: emojiParty,
     board: GameBoard,
     numPlayers: state.playerNum,
-    debug: true
+    debug: false
   };
 
   const Game = Client(gameObj);

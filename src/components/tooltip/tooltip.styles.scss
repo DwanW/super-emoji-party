@@ -1,0 +1,22 @@
+.tool-tip {
+    position:absolute;
+    background-color: rgb(51, 42, 90);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    transform: translate(0, 55px);
+    box-shadow: 0 0 5px 3px rgba(124, 124, 124, 0.918);
+
+    .title{
+        border-bottom: 1px solid white;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 20px;
+    }
+
+    .description{
+        font-weight: 600;
+        letter-spacing: 2px;
+    }
+}

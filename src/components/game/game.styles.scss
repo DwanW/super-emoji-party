@@ -14,13 +14,14 @@
     .cell-container{
         .cell {
             box-sizing: border-box;
-            border: 1px solid rgba(102, 102, 102, 0.336);
+            border:2px rgba(0, 0, 0, 0.5) ridge;
+            border-radius: 20px;
             text-align: center;
             position: absolute;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(143, 143, 143, 0.315);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255,255,255,0.6) 39%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.2) 100%);
             font-size: 20px;
             transition: 0.5s
         }
@@ -46,73 +47,111 @@
 
 .controls{ 
     @extend %position-shared;
-    top: 90vh;
-    width: 300px;
-    height: 70px; 
+    top: 85vh;
+    width: 100%;
+    height: 114px; 
     display:flex;
-    justify-content: center;  
+    justify-content: flex-start;  
     align-items: center;
-    z-index: 2;
+    z-index: 0;
+    background:linear-gradient(190deg, rgba(255,255,255,0.2) 0%, rgba(163, 163, 163, 0.2) 60%, rgba(0, 0, 0, 0.801) 100%);;
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
 
     .roll-dice {
         border: none;
-        transform: rotate(20deg);
-        color: green;
         transition: 0.5s;
         background-color: transparent;
-        font-size:40px;
+        font-size:50px;
+        line-height: 50px;
     
         &:hover {
-            transform: rotate(240deg); 
+            transform: rotate(180deg); 
         }
         &:focus {
             outline-style:none;
         }
     }
 
+    .spin{
+        animation:toss 2s infinite forwards linear;
+    }
+
     .end-turn{
         border: none;
-        background-color: yellow;
+        background-color: white;
+        position: relative;
         transition: 0.5s;
-        font-size:24px;
-    
+        font-size:25px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 15px;
+        margin: 0 30px;
+        z-index: 1;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+        &:before {
+            position:absolute;
+            transition: 0.3s;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+            z-index: -1;
+            transform:translate(0,-100%);
+            content:'';
+            background-color:rgb(161, 0, 167);
+        }
+        
         &:hover {
-            background-color: blue;
-            color: white; 
+            color: white;
+        }
+        &:hover:before{
+            transform:translate(0,0%);
         }
     }
     
 }
 
 .result-container {
-    width: 300px;
-    height: 140px; 
-    font-size: 30px; 
+    width: 400px;
+    height: 200px;  
     display: flex;
     flex-direction: column;
     text-align: center;
+    background-color: white;
+    box-shadow: 0 0 10px 5px white;
 
     .result-description {
         padding: 10px;
-        flex-grow: 1;
+        height: 40%;
+        text-transform: capitalize;
+        font-weight: 600;
+        font-size: 25px;
     }
 
     .result-value {
-        padding: 10px
+        padding: 10px;
+        font-size: 22px
     }
 }
 
 .info {
-    @extend %position-shared;
-    top: 78vh;
+    position: absolute;
+    left: 120px;
+    top: 73vh;
     text-align: center;
     width: 200px;
-    height: 40px; 
+    height: 100px; 
     font-size: 30px; 
     animation-name: fadeOut;
     animation-duration: 1.3s;
     animation-fill-mode: forwards;  
     z-index: 2;
+    background-color: rgb(95, 95, 95);
+    color: white;
+    line-height: 70px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 33% 75%, 23% 100%, 18% 75%, 0% 75%);
+
 }
 
 .winner{
@@ -121,10 +160,10 @@
     margin: auto;
     text-align: center;
     padding: 40px 20px;
-    width: 200px;
+    width: 100%;
     height: 130px;
     box-shadow: 3px 3px 7px 1px gray;
-    font-size: 30px;
+    font-size: 50px;
     animation: flash;
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
@@ -162,5 +201,17 @@
     }
     to {
         background-color: rgb(168, 212, 170);
+    }
+}
+
+@keyframes toss {
+    0% {
+        transform: rotate(0deg); 
+    }
+    30%{
+        transform: rotate(360deg);
+    }
+    100%{
+        transform: rotate(360deg);
     }
 }

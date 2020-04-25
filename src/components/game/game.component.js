@@ -8,6 +8,7 @@ import './game.styles.scss';
 import Banner from '../banner/banner.component';
 import EffectCard from '../effect-card/effect-card.component';
 import Modal from '../custom-modal/custom-modal.component';
+import ToolTip from '../tooltip/tooltip.component';
 import { effects } from '../../assests/emoji/effects';
 import { items } from '../../assests/emoji/items';
 
@@ -18,6 +19,8 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   const [showInfo, setShowInfo] = useState(false);
   const [showEffect, setShowEffect] = useState(false);
   const [showEffectResult, setShowEffectResult] = useState(false);
+  const [showToolTip, setShowToolTip] = useState(false);
+  const [toolTipInfo, setToolTipInfo] = useState({ top: '', left: '', playerObj: {} });
 
   const updatedRollValue = useRef();
 
@@ -29,7 +32,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   //display turn banner at start of each turn
   useEffect(() => {
     setShowBanner(true);
-    let hide = setInterval(() => setShowBanner(false), 1000);
+    let hide = setInterval(() => setShowBanner(false), 1400);
     return () => clearInterval(hide);
   }, [ctx.turn])
 
@@ -71,7 +74,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       }
     } else if (value < 0) {
       // move backward;
-      let goalPosition = currentPosition - value;
+      let goalPosition = currentPosition + value;
       if (goalPosition >= 0) {
         for (let i = 0; i < Math.abs(value); i++) {
           await new Promise((res, rej) => setTimeout(() => res(moves.traverse(false)), i ? 400 : 0));
@@ -94,8 +97,8 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   //calculate effect value
   const getValue = (baseValue) => {
     if (G.currentEffectType === 'MODIFY_STATS') {
-      let newHealth = (baseValue[0] < 0)? baseValue[0] * currentplayerObj.healthMod : baseValue[0];
-      let newSpirit = (baseValue[1] < 0)? baseValue[1] * currentplayerObj.spiritMod : baseValue[1];
+      let newHealth = (baseValue[0] < 0) ? baseValue[0] * currentplayerObj.healthMod : baseValue[0];
+      let newSpirit = (baseValue[1] < 0) ? baseValue[1] * currentplayerObj.spiritMod : baseValue[1];
       let newValue = [newHealth, newSpirit];
       moves.setValue(newValue);
     } else {
@@ -136,15 +139,15 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
     switch (G.currentEffectType) {
       case 'MODIFY_STATS':
         if (G.currentEffectValue[0] && G.currentEffectValue[1]) {
-          return `Your Health is ${(G.currentEffectValue[0] > 0) ? 'recovered' : 'decreased'} by ${Math.abs(G.currentEffectValue[0])} and Your Spirit is ${(G.currentEffectValue[0] > 0) ? 'replenished' : 'decreased'} by ${Math.abs(G.currentEffectValue[1])}`;
+          return `Your 💖Health is ${(G.currentEffectValue[0] > 0) ? 'recovered' : 'decreased'} by ${Math.abs(G.currentEffectValue[0])} and Your ✨Spirit is ${(G.currentEffectValue[0] > 0) ? 'replenished' : 'decreased'} by ${Math.abs(G.currentEffectValue[1])}`;
         } else if (G.currentEffectValue[0]) {
-          return `Your Health is ${(G.currentEffectValue[0] > 0) ? 'recovered' : 'decreased'} by ${Math.abs(G.currentEffectValue[0])}`;
+          return `Your 💖Health is ${(G.currentEffectValue[0] > 0) ? 'recovered' : 'decreased'} by ${Math.abs(G.currentEffectValue[0])}`;
         } else {
-          return `Your Spirit is ${(G.currentEffectValue[1] > 0) ? 'replenished' : 'decreased'} by ${Math.abs(G.currentEffectValue[1])}`;
+          return `Your ✨Spirit is ${(G.currentEffectValue[1] > 0) ? 'replenished' : 'decreased'} by ${Math.abs(G.currentEffectValue[1])}`;
         }
       case 'MOVE':
         if (G.currentEffectValue) {
-          return `Move ${(G.currentEffectValue > 0) ? 'forward' : 'backward'} by ${Math.abs(G.currentEffectValue)}`;
+          return `👣Move ${(G.currentEffectValue > 0) ? 'forward' : 'backward'} by ${Math.abs(G.currentEffectValue)}`;
         } else {
           return 'Nothing happened';
         };
@@ -153,6 +156,13 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       default:
         console.log('not a coded action description');
     }
+  }
+
+  // show player tooltip
+  const displayToolTip = (e, player) => {
+    setShowToolTip(true);
+    let newInfo = { top: e.target.style.top, left: e.target.style.left, playerObj: player };
+    setToolTipInfo(newInfo);
   }
 
 
@@ -181,7 +191,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         ...cellStyle,
         top: `${cellHeight * e.top}px`,
         left: `${cellWidth * e.left}px`,
-        transform: `translateZ(${(e.elevation * 50)}px)`,
+        transform: `translateZ(${(e.elevation * -50)}px)`,
         opacity: `${(e.elevation === mapLayout[currentplayerObj.position].elevation) ? 1 : 0.1}`
       }}
       key={idx}
@@ -192,19 +202,21 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
   )
 
   //generate players on board
-  const playerNode = G.players.map((e, idx) =>
+  const playerNode = G.players.map((ele, idx) =>
     (<div
       className='player'
+      onMouseEnter={(e) => displayToolTip(e, ele)}
+      onMouseLeave={() => setShowToolTip(false)}
       style={{
-        top: `${cellHeight * mapLayout[e.position].top}px`,
-        left: `${cellWidth * mapLayout[e.position].left}px`,
-        transform: `translateZ(${(mapLayout[e.position].elevation * 50)}px)`,
-        opacity: `${(currentplayerObj.playerName === e.playerName) ? 1 : 0.6}`,
-        zIndex: `${(currentplayerObj.playerName !== e.playerName) ? 0 : 1}`
+        top: `${cellHeight * mapLayout[ele.position].top}px`,
+        left: `${cellWidth * mapLayout[ele.position].left}px`,
+        transform: `translateZ(${(mapLayout[ele.position].elevation * -50)}px)`,
+        opacity: `${(currentplayerObj.playerName === ele.playerName) ? 1 : 0.6}`,
+        zIndex: `${(currentplayerObj.playerName === ele.playerName) ? 1 : 0}`
       }}
       key={`player${idx}`}
     >
-      {e.playerName}
+      {ele.playerName}
     </div>)
   )
 
@@ -214,6 +226,16 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
         <div className='cell-container'>{boardNode}</div>
         {playerNode}
       </div>
+
+      {
+        showToolTip ?
+          <ToolTip
+            top={toolTipInfo.top}
+            left={toolTipInfo.left}
+            title={`${toolTipInfo.playerObj.playerName} Player Info`}
+            description={`💖health: ${toolTipInfo.playerObj.health} ✨spirit: ${toolTipInfo.playerObj.spirit}`}
+          /> : null
+      }
 
       <Modal
         handleClose={onEffectExit}
@@ -255,10 +277,10 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       {(ctx.gameover && ctx.gameover.winner) ? (<div className="winner">Winner: {ctx.gameover.winner}</div>) : null}
 
       <div className='controls'>
-        <button className='roll-dice' onClick={onClick} style={{ color: G.numOfRoll ? 'green' : 'gray' }}>
+        <button className='end-turn' onClick={() => events.endTurn()}>End</button>
+        <button className={`roll-dice ${G.numOfRoll ? 'spin':''}`} onClick={onClick} style={{ color: G.numOfRoll ? 'lightgreen' : 'gray' }}>
           <FontAwesomeIcon icon={faDiceFour} />
         </button>
-        <button className='end-turn' onClick={() => events.endTurn()}>End Turn</button>
       </div>
 
       <div className='background' style={{ backgroundPosition: `${bgPosition}` }}></div>

@@ -9,8 +9,8 @@ const EffectCard = ({ playerObj, effect, effectCategory, onSelect, currentChoice
             <div className='player-container'>
                 <div className='status-container'>
                     <div className='large-icon'>{playerObj.playerName}</div>
-                    <div>{`💖 ${playerObj.health}`}</div>
-                    <div>{`✨ ${playerObj.spirit}`}</div>
+                    <div className='stats'>{`💖 ${playerObj.health}`}</div>
+                    <div className='stats'>{`✨ ${playerObj.spirit}`}</div>
                 </div>
                 <div className='inventory'>
                     {
@@ -25,8 +25,8 @@ const EffectCard = ({ playerObj, effect, effectCategory, onSelect, currentChoice
             <div className='effect-choices'>
                 {
                     effects[effectCategory][effect].choices.map((choiceObj, idx) => (
-                        <div className='choice' key={idx} onClick={() => onSelect(idx, choiceObj)} style={{ backgroundColor: idx === currentChoice ? '#cfcfcf' : 'white' }}>
-                            <h2>{choiceObj.title}</h2>
+                        <div className='choice' key={idx} onClick={() => onSelect(idx, choiceObj)} style={{ backgroundColor: idx === currentChoice ? 'cornflowerblue' : 'inherit' }}>
+                            <h2 className='choice-title'>{choiceObj.title}</h2>
                             {choiceObj.text}
                         </div>
                     ))

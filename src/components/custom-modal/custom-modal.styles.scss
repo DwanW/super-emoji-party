@@ -10,7 +10,7 @@
 
 .modal-main {
     position: absolute;
-    background:white;
+    background:transparent;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +20,25 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+
+    .modal-button{
+        background:red;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        line-height: 38px;
+        color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        transform: translateY(-20px);
+        transition: 0.4s;
+
+        &:hover{
+            background-color: black;
+            border: 1px solid white;
+        }
+    }
 }
 
 .display-block{
