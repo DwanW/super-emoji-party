@@ -1,16 +1,18 @@
 import React from 'react';
 import { useContext } from 'react';
 import { store } from '../../context/store';
+import { setGameIsOver } from '../../context/action';
 
 import GameBoard from '../../components/game/game.component';
 import { Client } from 'boardgame.io/react';
+import victory from '../../assests/soundtrack/victory.mp3';
 // import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
 import './game-page.styles.scss';
 
 //Game Page that renders the game client using the MainGame component;
 const GamePage = () => {
-  const { state } = useContext(store);
+  const { state, dispatch } = useContext(store);
 
   const playerArray = Array(state.playerNum).fill('').map((e, idx) => (
     {
@@ -133,7 +135,11 @@ const GamePage = () => {
 
     endIf: (G, ctx) => {
       let currentPlayer = G.players[Number(ctx.currentPlayer)];
+      let victorySound = new Audio(victory);
+      victorySound.volume = state.soundVolume;
       if (currentPlayer.position >= state.mapSize - 1) {
+        dispatch(setGameIsOver(true));
+        victorySound.play();
         return { winner: currentPlayer.playerName };
       }
     },

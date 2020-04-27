@@ -12,3 +12,13 @@ body {
     // perspective: 1000px;
 }
 
+.playback {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+
+    span{
+        font-size: 30px;
+    }
+}

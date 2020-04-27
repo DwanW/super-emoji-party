@@ -8,7 +8,8 @@ const initialState = {
   mapSize: 20,
   mapLayout: createMap(20),
   playerIcon: [emojiIcon[0], emojiIcon[1]],
-  isLoading: false
+  soundVolume: 0.1,
+  gameIsOver: false
 };
 
 // This create Global context
@@ -22,12 +23,12 @@ const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'SET_PLAYER_NUMBER':
-        let newArr = Array(action.payload).fill('').map((e,idx) => emojiIcon[idx])
-        return { ...state, playerNum: action.payload, playerIcon:newArr };
+        let newArr = Array(action.payload).fill('').map((e, idx) => emojiIcon[idx])
+        return { ...state, playerNum: action.payload, playerIcon: newArr };
 
       case 'SET_MAP_SIZE':
         return { ...state, mapSize: action.payload, mapLayout: createMap(action.payload) };
-        
+
       case 'SET_NEXT_ICON':
         {
           let currentIcon = state.playerIcon[action.payload];
@@ -50,10 +51,14 @@ const StateProvider = ({ children }) => {
             newIconArr[action.payload] = emojiIcon[currentIconIdx - 1];
             return { ...state, playerIcon: newIconArr };
           } else {
-            newIconArr[action.payload] = emojiIcon[emojiIcon.length -1];
+            newIconArr[action.payload] = emojiIcon[emojiIcon.length - 1];
             return { ...state, playerIcon: newIconArr };
           }
         }
+      case 'SET_SOUND_VOLUME':
+        return { ...state, soundVolume: action.payload };
+      case 'SET_GAME_IS_OVER':
+        return { ...state, gameIsOver: action.payload };
       default:
         console.log('error');
     };
