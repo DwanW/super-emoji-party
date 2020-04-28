@@ -22,8 +22,3 @@ export const setSoundVolume = (value) => ({
     type: 'SET_SOUND_VOLUME',
     payload: value
 })
-
-export const setGameIsOver = (value) => ({
-    type: 'SET_GAME_IS_OVER',
-    payload: value
-})

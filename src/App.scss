@@ -10,14 +10,3 @@ body {
     background: rgb(160, 228, 255);
     z-index: -1;
 }
-
-.playback {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    cursor: pointer;
-
-    span{
-        font-size: 30px;
-    }
-}

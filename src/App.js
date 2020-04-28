@@ -1,18 +1,13 @@
 import React from 'react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 import { Switch, Route, __RouterContext } from 'react-router-dom';
 import FrontPage from './page/front-page/front-page';
 import GamePage from './page/game-page/game-page';
 import SettingPage from './page/setting-page/setting-page';
-import { store } from './context/store';
 
 import './App.scss';
-import main from './assets/soundtrack/main.mp3'
-import { animated, useTransition } from 'react-spring'
-
-const backgroundAudio = new Audio(main);
-backgroundAudio.loop = true;
+import { animated, useTransition } from 'react-spring';
 
 //Primary function is to have routes to different pages of the app, and pass context to child component
 const App = () => {
@@ -23,31 +18,6 @@ const App = () => {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   });
-
-  //playbackground music
-  const [showAudioButton, setShowAudioButton] = useState(false);
-  const { state } = useContext(store);
-  backgroundAudio.volume = state.soundVolume;
-
-  // adjusted based on google chrome audio auto playback rule
-  useEffect(() => {
-    if (!state.gameIsOver && state.soundVolume) {
-      let promise = backgroundAudio.play();
-      if (promise !== undefined) {
-        promise.catch(err => {
-          console.log(err)
-          setShowAudioButton(true);
-        });
-      }
-    } else {
-      backgroundAudio.pause();
-    }
-  }, [state.gameIsOver, state.soundVolume])
-
-  const play = () => {
-    backgroundAudio.play();
-    setShowAudioButton(false)
-  }
 
   return (
     <React.Fragment>
@@ -60,9 +30,6 @@ const App = () => {
           </Switch>
         </animated.div>
       ))}
-      {
-        showAudioButton ? <div className="playback" onClick={play}><span role='img' aria-label='sound-control'>🔊</span></div> : null
-      }
     </React.Fragment>
   )
 }

@@ -1,17 +1,48 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { store } from '../../context/store';
-import { setGameIsOver } from '../../context/action';
 
 import GameBoard from '../../components/game/game.component';
 import { Client } from 'boardgame.io/react';
+import main from '../../assets/soundtrack/main.mp3';
 import victory from '../../assets/soundtrack/victory.mp3';
 
 import './game-page.styles.scss';
 
+const victorySound = new Audio(victory);
+const backgroundAudio = new Audio(main);
+backgroundAudio.loop = true;
+
 //Game Page that renders the game client using the MainGame component;
 const GamePage = () => {
-  const { state, dispatch } = useContext(store);
+  const { state } = useContext(store);
+
+  //playbackground music
+  const [showAudioButton, setShowAudioButton] = useState(false);
+  backgroundAudio.volume = state.soundVolume;
+  victorySound.volume = state.soundVolume;
+
+  // adjusted based on google chrome audio auto playback rule
+  useEffect(() => {
+    if (state.soundVolume) {
+      let promise = backgroundAudio.play();
+      if (promise !== undefined) {
+        promise.catch(err => {
+          console.log(err)
+          setShowAudioButton(true);
+        });
+      }
+    } else {
+      backgroundAudio.pause();
+    }
+
+    return () => backgroundAudio.pause();
+  }, [state.soundVolume])
+
+  const play = () => {
+    backgroundAudio.play();
+    setShowAudioButton(false)
+  }
 
   const playerArray = Array(state.playerNum).fill('').map((e, idx) => (
     {
@@ -132,10 +163,8 @@ const GamePage = () => {
 
     endIf: (G, ctx) => {
       let currentPlayer = G.players[Number(ctx.currentPlayer)];
-      let victorySound = new Audio(victory);
-      victorySound.volume = state.soundVolume;
       if (currentPlayer.position >= state.mapSize - 1) {
-        dispatch(setGameIsOver(true));
+        backgroundAudio.pause();
         victorySound.play();
         return { winner: currentPlayer.playerName };
       }
@@ -154,6 +183,9 @@ const GamePage = () => {
   return (
     <div className="game-page">
       <Game mapLayout={state.mapLayout} mapSize={state.mapSize} />
+      {
+        showAudioButton ? <div className="playback" onClick={play}><span role='img' aria-label='sound-control'>🔊</span></div> : null
+      }
     </div>
   )
 }

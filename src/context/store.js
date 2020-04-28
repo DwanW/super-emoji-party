@@ -8,8 +8,7 @@ const initialState = {
   mapSize: 40,
   mapLayout: createMap(40),
   playerIcon: [emojiIcon[0], emojiIcon[1]],
-  soundVolume: 0.1,
-  gameIsOver: false
+  soundVolume: 0.1
 };
 
 // This create Global context
@@ -57,8 +56,6 @@ const StateProvider = ({ children }) => {
         }
       case 'SET_SOUND_VOLUME':
         return { ...state, soundVolume: action.payload };
-      case 'SET_GAME_IS_OVER':
-        return { ...state, gameIsOver: action.payload };
       default:
         console.log('error');
     };

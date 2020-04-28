@@ -2,3 +2,14 @@
     position: absolute;
     width: 100%;
 }
+
+.playback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+
+    span{
+        font-size: 30px;
+    }
+}
