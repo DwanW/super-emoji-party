@@ -9,7 +9,7 @@ import AppHeader from '../../components/app-header/app-header.component';
 
 import './front-page.styles.scss';
 
-
+const date = new Date();
 // FrontPage that sets up number of players for the game and Link to the Game Page;
 const FrontPage = () => {
     const { state, dispatch } = useContext(store);
@@ -22,8 +22,11 @@ const FrontPage = () => {
                 <div onClick={() => dispatch(setPlayerNum(2))} className="menu-option">Two Players</div>
                 <div onClick={() => dispatch(setPlayerNum(3))} className="menu-option">Three Players</div>
                 <Link to="/setting" className="menu-option">Settings</Link>
-                <span className='playerNum-pointer' style={{top:`${state.playerNum===2?'55px':'105px'}`}} role='img' aria-label='selected'>👍</span>
+                <span className='playerNum-pointer' style={{ top: `${state.playerNum === 2 ? '55px' : '105px'}` }} role='img' aria-label='selected'>👍</span>
             </div>
+            <footer className='footer'>
+                ©{date.getFullYear()} SEParty. All rights reserved.
+            </footer>
         </div>
     )
 }

@@ -1,11 +1,11 @@
-import { effects } from '../../assests/emoji/effects';
+import { effects } from '../../assets/emoji/effects';
 
 
 // define effect generation probability
 const buildingProb = 0.1;
-const foodProb = 0.15;
-const animalProb = 0.15;
-const weatherProb = 0.03;
+const foodProb = 0.2;
+const animalProb = 0.2;
+const weatherProb = 0.04;
 const transportProb = 0.15;
 
 // sum of weights must be <= 1;
@@ -13,11 +13,10 @@ const weights = [buildingProb, foodProb, animalProb, weatherProb, transportProb]
 const correspondingResult = ['buildings', 'foods', 'animals', 'weather', 'transportation'];
 
 const getRandomEffect = () => {
-    let randomNum = Math.random(),
-        sum = 0,
-        lastIndex = weights.length - 1;
+    let randomNum = Math.random();
+    let sum = 0;
 
-    for (let i = 0; i < lastIndex; i++) {
+    for (let i = 0; i < weights.length; i++) {
         if (weights[i] === 0) {
             continue;
         }
@@ -31,18 +30,9 @@ const getRandomEffect = () => {
     return {effectCategory: 'none', effect: 'none'};
 }
 
-//return {effectCategory: correspondingResult[i], effect: randomEffect};
-
-// const template = {
-//     top: 0,
-//     left: 0,
-//     elevation: 0,
-//     effect: 'none'
-// }
-
 //[1,2,3,4] means moving direction [up, right, down ,left];
 
-//board size 1024 x 673  //width:17, height: 10;
+//board size 1024 x 673  //width:17, height: 10; prevent screen border rendering
 
 const maxWidth = 18;
 const maxHeight = 11;

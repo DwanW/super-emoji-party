@@ -5,7 +5,7 @@
     align-items: center;
     position:absolute;
     width: 100%;
-    margin: 15% auto 0% auto;
+    height: 100%;
     
     .option-container {
         display: flex;
@@ -77,6 +77,12 @@
                 animation: shake 4s infinite ease forwards
             }
         }
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 10px;
+        color: gray
     }
 }
 

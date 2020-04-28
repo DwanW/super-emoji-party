@@ -1,9 +1,9 @@
 import React from 'react';
 import './with-spinner.styles.scss';
 
+//not implemented yet
 const WithSpinner = (WrappedComponent) => {
     const Spinner = ({ isLoading, ...otherProps }) => {
-        console.log(isLoading)
         return isLoading ?
             (<div className="spinner-overlay">
                 <div className="spinner-container"></div>

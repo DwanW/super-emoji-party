@@ -14,15 +14,13 @@ const SettingPage = () => {
         <div className='setting-page'>
             <div className='setting-nav'>
                 <div className={`nav-options ${displaySetting === 0 ? 'selected-option' : ''}`} onClick={() => setDisplaySetting(0)}>Board Setting</div>
-                <div className={`nav-options ${displaySetting === 1 ? 'selected-option' : ''}`} onClick={() => setDisplaySetting(1)}>Turn Setting</div>
-                <div className={`nav-options ${displaySetting === 2 ? 'selected-option' : ''}`} onClick={() => setDisplaySetting(2)}>Audio Setting</div>
+                <div className={`nav-options ${displaySetting === 2 ? 'selected-option' : ''}`} onClick={() => setDisplaySetting(1)}>Audio Setting</div>
                 <Link to="/" className='nav-options'>Return to Main Screen</Link>
             </div>
             <div className='setting-display'>
                 {
                     displaySetting === 0 ? <BoardSetting />
-                        : displaySetting === 1 ? <div></div>
-                            : displaySetting === 2 ? <AudioSetting />: ''
+                        : displaySetting === 1 ? <AudioSetting /> : ''
                 }
             </div>
         </div>

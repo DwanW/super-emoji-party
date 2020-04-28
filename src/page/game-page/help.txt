@@ -1,3 +1,4 @@
+Note: below are some of the ideas generated during development
 player attribute information:
 
 health/positivity: 0 health skip turn, more health decrease chance unfavorable encounter

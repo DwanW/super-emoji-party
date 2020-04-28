@@ -9,8 +9,8 @@ import Banner from '../banner/banner.component';
 import EffectCard from '../effect-card/effect-card.component';
 import Modal from '../custom-modal/custom-modal.component';
 import ToolTip from '../tooltip/tooltip.component';
-import { effects } from '../../assests/emoji/effects';
-import { items } from '../../assests/emoji/items';
+import { effects } from '../../assets/emoji/effects';
+import { items } from '../../assets/emoji/items';
 
 //this component sets up the view layer
 const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
@@ -196,7 +196,13 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
       }}
       key={idx}
     >
-      <span className='effect-icon'>{e.effect !== 'none' ? effects[e.effectCategory][e.effect].icon : null}</span>
+      <span className={`effect-icon ${(e.elevation === mapLayout[currentplayerObj.position].elevation) ?
+        ((e.effectCategory === 'animals') ? 'jump'
+          : (e.effectCategory === 'foods') ? 'float'
+            : (e.effectCategory === 'transportation') ? 'shake'
+              : 'breath'): ''}`}>
+        {e.effect !== 'none' ? effects[e.effectCategory][e.effect].icon : null}
+      </span>
     </div>
     )
   )
@@ -278,7 +284,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
       <div className='controls'>
         <button className='end-turn' onClick={() => events.endTurn()}>End</button>
-        <button className={`roll-dice ${G.numOfRoll ? 'spin':''}`} onClick={onClick} style={{ color: G.numOfRoll ? 'lightgreen' : 'gray' }}>
+        <button className={`roll-dice ${G.numOfRoll ? 'spin' : ''}`} onClick={onClick} style={{ color: G.numOfRoll ? 'lightgreen' : 'gray' }}>
           <FontAwesomeIcon icon={faDiceFour} />
         </button>
       </div>

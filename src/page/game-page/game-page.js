@@ -5,8 +5,7 @@ import { setGameIsOver } from '../../context/action';
 
 import GameBoard from '../../components/game/game.component';
 import { Client } from 'boardgame.io/react';
-import victory from '../../assests/soundtrack/victory.mp3';
-// import WithSpinner from '../../components/with-spinner/with-spinner.component';
+import victory from '../../assets/soundtrack/victory.mp3';
 
 import './game-page.styles.scss';
 
@@ -17,7 +16,7 @@ const GamePage = () => {
   const playerArray = Array(state.playerNum).fill('').map((e, idx) => (
     {
       playerName: state.playerIcon[idx],
-      health: 1,
+      health: 10,
       spirit: 30,
       inventory: [],
       healthMod: 1,
@@ -29,9 +28,7 @@ const GamePage = () => {
 
   // initialize game state, define game interaction(moves), and define victory condition here.
   const emojiParty = {
-    //setup global state object where it has a space property with value of an array, length 10 and value null for each array element.
     setup: () => ({
-      // change 10 later
       dieRoll: 6,
       numOfRoll: 1,
       players: playerArray,
@@ -152,6 +149,7 @@ const GamePage = () => {
     debug: false
   };
 
+  //creates game client
   const Game = Client(gameObj);
   return (
     <div className="game-page">

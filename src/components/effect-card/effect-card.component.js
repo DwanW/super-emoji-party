@@ -1,5 +1,5 @@
 import React from 'react';
-import { effects } from '../../assests/emoji/effects'
+import { effects } from '../../assets/emoji/effects'
 
 import './effect-card.styles.scss';
 

@@ -1,12 +1,12 @@
 import React, { createContext, useReducer } from 'react';
 import createMap from '../components/game/map-generation';
-import { emojiIcon } from '../assests/emoji/player-icons';
+import { emojiIcon } from '../assets/emoji/player-icons';
 
 // Global App Initial State
 const initialState = {
   playerNum: 2,
-  mapSize: 20,
-  mapLayout: createMap(20),
+  mapSize: 40,
+  mapLayout: createMap(40),
   playerIcon: [emojiIcon[0], emojiIcon[1]],
   soundVolume: 0.1,
   gameIsOver: false
@@ -17,7 +17,7 @@ const store = createContext(initialState);
 // This create Provider for the parent component
 const { Provider } = store;
 
-// This returns Provider with value = the
+// This returns Provider wrapper
 const StateProvider = ({ children }) => {
   // useReducer create state = initialState and dispatch function
   const [state, dispatch] = useReducer((state, action) => {

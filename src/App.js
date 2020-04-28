@@ -8,29 +8,30 @@ import SettingPage from './page/setting-page/setting-page';
 import { store } from './context/store';
 
 import './App.scss';
-import main from './assests/soundtrack/main.mp3'
+import main from './assets/soundtrack/main.mp3'
 import { animated, useTransition } from 'react-spring'
 
 const backgroundAudio = new Audio(main);
 backgroundAudio.loop = true;
+
 //Primary function is to have routes to different pages of the app, and pass context to child component
 const App = () => {
 
   const { location } = useContext(__RouterContext);
   const transitions = useTransition(location, location => location.pathname, {
-    from: { opacity: 0, transform: "translateZ(-1000px)" },
-    enter: { opacity: 1, transform: "translateZ(0px)" },
-    leave: { opacity: 0, transform: "translateZ(-1000px)" },
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
   });
 
   //playbackground music
   const [showAudioButton, setShowAudioButton] = useState(false);
   const { state } = useContext(store);
   backgroundAudio.volume = state.soundVolume;
-  
+
   // adjusted based on google chrome audio auto playback rule
   useEffect(() => {
-    if (!state.gameIsOver) {
+    if (!state.gameIsOver && state.soundVolume) {
       let promise = backgroundAudio.play();
       if (promise !== undefined) {
         promise.catch(err => {
@@ -41,7 +42,7 @@ const App = () => {
     } else {
       backgroundAudio.pause();
     }
-  }, [state.gameIsOver])
+  }, [state.gameIsOver, state.soundVolume])
 
   const play = () => {
     backgroundAudio.play();
