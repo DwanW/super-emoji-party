@@ -15,6 +15,13 @@
         color: gray;
         opacity: 0;
     }
+
+    @media screen and (max-width: 800px){
+        .header-title{
+            font-size: 10vmin;
+            letter-spacing: 2px;
+        }
+    }
     .header-title:nth-child(1){
         animation:slide-from-left 1s 0.1s ease 1 forwards 
     }
@@ -69,6 +76,11 @@
     animation-timing-function: ease, ease;
     animation-iteration-count: 1, infinite;
     animation-fill-mode: forwards, forwards;
+}
+@media screen and (max-width: 800px){
+    .header-container{
+        width: 100vw;
+    }
 }
 
 
