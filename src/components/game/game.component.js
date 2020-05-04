@@ -284,7 +284,7 @@ const GameBoard = ({ ctx, G, moves, events, mapLayout, mapSize }) => {
 
       <div className='controls'>
         <button className='end-turn' onClick={() => events.endTurn()}>End</button>
-        <button className={`roll-dice ${G.numOfRoll ? 'spin' : ''}`} onClick={onClick} style={{ color: G.numOfRoll ? 'lightgreen' : 'gray' }}>
+        <button className={`roll-dice ${G.numOfRoll ? 'spin' : ''}`} onClick={onClick} style={{ color: G.numOfRoll ? 'MAGENTA' : 'gray' }}>
           <FontAwesomeIcon icon={faDiceFour} />
         </button>
       </div>

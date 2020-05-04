@@ -1,7 +1,7 @@
 .setting-page{
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
     align-items: center;
     left: 0;
@@ -33,6 +33,11 @@
             color: white;
             background-color: rgba(0, 0, 0, 0.63);
         }
+    }
+}
+@media screen and (max-width: 1024px){
+    .setting-page {
+        min-width: 1024px;
     }
 }
 .setting-display {
